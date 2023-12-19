@@ -25,6 +25,7 @@ class MainMenuScreen extends StatefulWidget {
 
 class _MainMenuScreenState extends State<MainMenuScreen> {
   int seletectMap = 0;
+  DateTime? _lastBackPressed;
   Future<void> fetchData() async {
     generalConfigController.gameHighScore.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameHighScore, defaultValue: '0');
@@ -58,11 +59,48 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     //     overlays: SystemUiOverlay.values); // to re-show bars
   }
 
+  void showGeneralToastMessage(
+      {String? message, Duration? duration, SnackPosition? snackPosition}) {
+    if (Get.isSnackbarOpen) {
+      return;
+    }
+    Get.showSnackbar(
+      GetSnackBar(
+        isDismissible: false,
+        snackStyle: SnackStyle.FLOATING,
+        snackPosition: snackPosition ?? SnackPosition.TOP,
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        borderRadius: 10.0,
+        duration: duration ?? const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 800),
+        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+        reverseAnimationCurve: Curves.easeOutCubic,
+        backgroundColor: Styles.darkThemePrimaryColor,
+        messageText: Text(
+          message ?? "",
+          style: Get.textTheme.bodyMedium?.copyWith(color: Styles.whiteColor),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.game.pauseEngine();
-    return PopScope(
-      canPop: false,
+    return WillPopScope(
+      onWillPop: () {
+        if (_lastBackPressed == null ||
+            DateTime.now().difference(_lastBackPressed!) >
+                const Duration(seconds: 2)) {
+          _lastBackPressed = DateTime.now();
+          showGeneralToastMessage(
+              message: 'Press back agian to exit game',
+              snackPosition: SnackPosition.BOTTOM);
+          return Future.value(false);
+        }
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        return Future.value(true);
+      },
       child: Scaffold(
         body: GestureDetector(
           onTap: () {

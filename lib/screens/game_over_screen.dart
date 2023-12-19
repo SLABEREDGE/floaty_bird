@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../componets/setting_menu_button.dart';
@@ -205,6 +206,7 @@ class GameOverScreen extends StatelessWidget {
     game.bird.reset();
     game.overlays.remove('gameOver');
     game.pauseEngine();
-    Get.back();
+    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    // Get.back();
   }
 }

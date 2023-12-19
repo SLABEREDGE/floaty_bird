@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
@@ -172,6 +173,7 @@ class PauseMenuScreen extends StatelessWidget {
 
   void onGetBack() {
     // Get.offAllNamed(Routes.HOME);
-    Get.back();
+    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    // Get.back();
   }
 }

@@ -121,9 +121,10 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                 widget.game.overlays.remove('gameOver');
                 widget.game.overlays.remove('pauseMenuScreen');
                 widget.game.pauseEngine();
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                    overlays: SystemUiOverlay.values);
-                Get.back();
+                // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                //     overlays: SystemUiOverlay.values);
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                // Get.back();
                 clicked = !clicked;
               },
               child: BouncingWidget(
