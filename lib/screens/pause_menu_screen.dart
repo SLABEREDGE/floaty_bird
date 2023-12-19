@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
 import '../componets/setting_menu_button.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/bouncing_widget.dart';
 
 class PauseMenuScreen extends StatelessWidget {
-  final FlappyBirdGame game;
+  final FloatyBirdGame game;
   static const String id = 'pauseMenuScreen';
   const PauseMenuScreen({
     super.key,

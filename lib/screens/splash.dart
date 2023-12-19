@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import '../componets/pause_menu_button.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/assets.dart';
 import 'game_over_screen.dart';
@@ -22,7 +22,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  final game = FlappyBirdGame();
+  final game = FloatyBirdGame();
   @override
   void initState() {
     fetchData();

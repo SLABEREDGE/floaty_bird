@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
 import '../controller/general_config_controller.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/bouncing_widget.dart';
 import '../utils/constants.dart';
 
 class SettingsMenuButton extends StatefulWidget {
-  final FlappyBirdGame game;
+  final FloatyBirdGame game;
   const SettingsMenuButton({super.key, required this.game});
 
   @override

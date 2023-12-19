@@ -2,11 +2,11 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import '../game/configuration.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../game/pipe_position.dart';
 import '../utils/assets.dart';
 
-class Pipe extends SpriteComponent with HasGameRef<FlappyBirdGame> {
+class Pipe extends SpriteComponent with HasGameRef<FloatyBirdGame> {
   Pipe({
     required this.height,
     required this.pipePosition,

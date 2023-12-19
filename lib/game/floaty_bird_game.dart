@@ -10,8 +10,8 @@ import '../componets/pipe_group.dart';
 import '../utils/ara_theme.dart';
 import 'configuration.dart';
 
-class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
-  FlappyBirdGame();
+class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
+  FloatyBirdGame();
 
   late Bird bird;
   late Background background;

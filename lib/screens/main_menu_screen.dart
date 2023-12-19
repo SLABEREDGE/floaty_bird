@@ -10,12 +10,12 @@ import '../../../utils/ara_theme.dart';
 import '../../../utils/constants.dart';
 import '../componets/setting_menu_button.dart';
 import '../controller/general_config_controller.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/assets.dart';
 import '../utils/bouncing_widget.dart';
 
 class MainMenuScreen extends StatefulWidget {
-  final FlappyBirdGame game;
+  final FloatyBirdGame game;
   static const String id = 'mainMenu';
   const MainMenuScreen({super.key, required this.game});
 
@@ -142,7 +142,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       Stack(
                         children: [
                           Text(
-                            'Flappy Bird',
+                            'Floaty Bird',
                             style: TextStyle(
                               fontSize: 65,
                               fontFamily: 'Game',
@@ -165,7 +165,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             ),
                           ),
                           const Text(
-                            'Flappy Bird',
+                            'Floaty Bird',
                             style: TextStyle(
                               fontSize: 65,
                               color: Colors.white,
@@ -233,59 +233,65 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       const SizedBox(
                         height: 30,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          widget.game.overlays.remove('mainMenu');
-                          widget.game.overlays.add('pauseMenuButton');
-                          widget.game.resumeEngine();
-                        },
-                        child: BouncingWidget(
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/button.png',
-                                height: 55,
-                                // width: 300,
-                                fit: BoxFit.cover,
-                              ),
-                              Text(
-                                'Tap to start',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'sofia',
-                                  fontWeight: FontWeight.bold,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.stroke
-                                    ..strokeWidth = 2
-                                    ..color = Styles.darkGreyColor,
-                                  shadows: <Shadow>[
-                                    const Shadow(
-                                      offset: Offset(3, 3),
-                                      blurRadius: 5.0,
-                                      color: Colors.grey,
+                      (generalConfigController.isGameBackgroundChange.value ==
+                              false)
+                          ? GestureDetector(
+                              onTap: () {
+                                widget.game.overlays.remove('mainMenu');
+                                widget.game.overlays.add('pauseMenuButton');
+                                widget.game.resumeEngine();
+                              },
+                              child: BouncingWidget(
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/button.png',
+                                      height: 55,
+                                      // width: 300,
+                                      fit: BoxFit.cover,
                                     ),
-                                    Shadow(
-                                      offset: const Offset(3, 3),
-                                      blurRadius: 10.0,
-                                      color: Colors.black.withOpacity(0.8),
+                                    Text(
+                                      'Tap to start',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'sofia',
+                                        fontWeight: FontWeight.bold,
+                                        foreground: Paint()
+                                          ..style = PaintingStyle.stroke
+                                          ..strokeWidth = 2
+                                          ..color = Styles.darkGreyColor,
+                                        shadows: <Shadow>[
+                                          const Shadow(
+                                            offset: Offset(3, 3),
+                                            blurRadius: 5.0,
+                                            color: Colors.grey,
+                                          ),
+                                          Shadow(
+                                            offset: const Offset(3, 3),
+                                            blurRadius: 10.0,
+                                            color:
+                                                Colors.black.withOpacity(0.8),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Text(
+                                      'Tap to start',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'sofia',
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                              const Text(
-                                'Tap to start',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'sofia',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                            )
+                          : const CircularProgressIndicator(
+                              color: Styles.whiteColor,
+                            ),
                       // const SizedBox(
                       //   height: 30,
                       // ),
@@ -501,8 +507,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                       seletectMap = index;
                                     }
 
-                                    // await widget.game.background
-                                    //     .getBackground();
+                                    await widget.game.background
+                                        .getBackground();
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(

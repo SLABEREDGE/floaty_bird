@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../componets/setting_menu_button.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/bouncing_widget.dart';
 
 class GameOverScreen extends StatelessWidget {
-  final FlappyBirdGame game;
+  final FloatyBirdGame game;
   static const String id = 'gameOver';
   const GameOverScreen({super.key, required this.game});
 

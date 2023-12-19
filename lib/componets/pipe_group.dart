@@ -5,13 +5,13 @@ import 'package:flame_audio/flame_audio.dart';
 
 import '../controller/general_config_controller.dart';
 import '../game/configuration.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../game/pipe_position.dart';
 import '../utils/assets.dart';
 import '../utils/constants.dart';
 import 'pipe.dart';
 
-class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
+class PipeGroup extends PositionComponent with HasGameRef<FloatyBirdGame> {
   PipeGroup();
 
   final _random = Random();

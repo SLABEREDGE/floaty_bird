@@ -2,12 +2,12 @@ import 'package:flame/components.dart';
 
 import '../controller/general_config_controller.dart';
 import '../game/background_image.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/assets.dart';
 import '../utils/constants.dart';
 
 class Background extends SpriteGroupComponent<BackgroundImage>
-    with HasGameRef<FlappyBirdGame> {
+    with HasGameRef<FloatyBirdGame> {
   Background();
 
   @override

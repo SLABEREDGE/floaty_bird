@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/ara_theme.dart';
-import '../game/flappy_bird_game.dart';
+import '../game/floaty_bird_game.dart';
 import '../utils/bouncing_widget.dart';
 
 class PauseMenuButton extends StatelessWidget {
   static const String id = 'pauseMenuButton';
-  final FlappyBirdGame game;
+  final FloatyBirdGame game;
   const PauseMenuButton({super.key, required this.game});
 
   @override
