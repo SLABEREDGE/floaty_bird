@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:flame/game.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-
 import '../componets/pause_menu_button.dart';
 import '../game/flappy_bird_game.dart';
 import '../utils/ara_theme.dart';
@@ -37,19 +36,20 @@ class _SplashState extends State<Splash> {
         statusBarIconBrightness: Platform.isAndroid ? Brightness.light : null,
       ),
     );
-    await Future.delayed(const Duration(seconds: 2));
-    // await Get.to(
-    //   () => GameWidget(
-    //     game: game,
-    //     initialActiveOverlays: const [MainMenuScreen.id],
-    //     overlayBuilderMap: {
-    //       'mainMenu': (context, _) => MainMenuScreen(game: game),
-    //       'gameOver': (context, _) => GameOverScreen(game: game),
-    //       'pauseMenuButton': (context, _) => PauseMenuButton(game: game),
-    //       'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
-    //     },
-    //   ),
-    // );
+    generalConfigController.isGameSplashAnimating.value = true;
+    await Future.delayed(const Duration(milliseconds: 3600));
+    await Get.to(
+      () => GameWidget(
+        game: game,
+        initialActiveOverlays: const [MainMenuScreen.id],
+        overlayBuilderMap: {
+          'mainMenu': (context, _) => MainMenuScreen(game: game),
+          'gameOver': (context, _) => GameOverScreen(game: game),
+          'pauseMenuButton': (context, _) => PauseMenuButton(game: game),
+          'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
+        },
+      ),
+    );
   }
 
   @override
@@ -65,12 +65,108 @@ class _SplashState extends State<Splash> {
         height: generalConfigController.dheight.value,
         width: generalConfigController.dwidth.value,
         child: Center(
-          child: Image.asset(
-            Assets.splash,
-            height: 150.0.h,
-            width: 150.0.h,
+          child: Stack(
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 150.0.h,
+                    width: 150.0.h,
+                  ),
+                  const Text(
+                    'Floaty Bird',
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Styles.lightYellowColor,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Game',
+                      shadows: <Shadow>[
+                        Shadow(
+                          offset: Offset(5, 5),
+                          blurRadius: 5.0,
+                          color: Colors.grey,
+                        ),
+                        Shadow(
+                          offset: Offset(5, 5),
+                          blurRadius: 10.0,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  )
+                      .animate(
+                          target: generalConfigController
+                                  .isGameSplashAnimating.value
+                              ? 1
+                              : 0)
+                      .then(delay: 500.ms)
+                      .slideY(
+                        duration: 500.ms,
+                        begin: 0,
+                        end: 0.15,
+                      )
+                      .then(delay: 500.ms)
+                      .slideY(
+                        // curve: Curves.easeOutExpo,
+                        duration: 500.ms,
+                        begin: 0.15,
+                        end: -0.05,
+                      )
+                      .then(delay: 500.ms)
+                      .slideY(
+                        curve: Curves.easeIn,
+                        duration: 500.ms,
+                        end: 0.05,
+                      ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Obx(
+                    () => Image.asset(
+                      Assets.splash,
+                      height: 150.0.h,
+                      width: 150.0.h,
+                    )
+                        .animate(
+                            target: generalConfigController
+                                    .isGameSplashAnimating.value
+                                ? 1
+                                : 0)
+                        .slideY(
+                          duration: 500.ms,
+                          begin: 0,
+                          end: 0.3,
+                        )
+                        .then(delay: 500.ms)
+                        .slideY(
+                          // curve: Curves.easeOutExpo,
+                          duration: 500.ms,
+                          end: -0.1,
+                        )
+                        .then(delay: 500.ms)
+                        .slideY(
+                          curve: Curves.easeIn,
+                          duration: 500.ms,
+                          end: 0.1,
+                        ),
+                  ),
+                  const Text(
+                    'Floaty Bird',
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Colors.transparent,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Game',
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
-        ),
+        ).animate().then(delay: 3000.ms).slideY(begin: 0, end: -1),
       ),
     );
   }
