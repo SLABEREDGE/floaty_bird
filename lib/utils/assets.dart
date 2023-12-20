@@ -17,6 +17,7 @@ class Assets {
 
   static const gameOver = 'assets/images/gameover.png';
   static const splash = 'assets/images/splash.png';
+  static const splash2 = 'assets/images/splash2.png';
   static const forestMenu = 'assets/images/background_forest_menu.jpg';
   static const ruinsMenu = 'assets/images/background_ruins_menu.jpg';
   static const templeMenu = 'assets/images/background_temple_menu.jpg';

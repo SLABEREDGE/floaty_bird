@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flame/game.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/extension.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+
 import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
@@ -37,7 +39,14 @@ class _SplashState extends State<Splash> {
       ),
     );
     generalConfigController.isGameSplashAnimating.value = true;
-    await Future.delayed(const Duration(milliseconds: 3600));
+    generalConfigController.isBirdSwitched.value = true;
+    await Future.delayed(const Duration(milliseconds: 1200));
+    generalConfigController.isBirdSwitched.value = false;
+    await Future.delayed(const Duration(milliseconds: 1200));
+    generalConfigController.isBirdSwitched.value = true;
+    await Future.delayed(const Duration(milliseconds: 1200));
+    generalConfigController.isBirdSwitched.value = false;
+    await Future.delayed(const Duration(milliseconds: 600));
     await Get.to(
       () => GameWidget(
         game: game,
@@ -78,21 +87,21 @@ class _SplashState extends State<Splash> {
                     'Floaty Bird',
                     style: TextStyle(
                       fontSize: 60,
-                      color: Styles.lightYellowColor,
+                      color: Colors.orangeAccent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Game',
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(5, 5),
-                          blurRadius: 5.0,
-                          color: Colors.grey,
-                        ),
-                        Shadow(
-                          offset: Offset(5, 5),
-                          blurRadius: 10.0,
-                          color: Colors.black,
-                        ),
-                      ],
+                      // shadows: <Shadow>[
+                      //   Shadow(
+                      //     offset: Offset(5, 5),
+                      //     blurRadius: 5.0,
+                      //     color: Colors.grey,
+                      //   ),
+                      //   Shadow(
+                      //     offset: Offset(5, 5),
+                      //     blurRadius: 10.0,
+                      //     color: Colors.black,
+                      //   ),
+                      // ],
                     ),
                   )
                       .animate(
@@ -100,24 +109,22 @@ class _SplashState extends State<Splash> {
                                   .isGameSplashAnimating.value
                               ? 1
                               : 0)
-                      .then(delay: 500.ms)
+                      .then(delay: 350.ms)
                       .slideY(
                         duration: 500.ms,
                         begin: 0,
-                        end: 0.15,
+                        end: 0.4,
                       )
                       .then(delay: 500.ms)
                       .slideY(
-                        // curve: Curves.easeOutExpo,
                         duration: 500.ms,
                         begin: 0.15,
                         end: -0.05,
                       )
-                      .then(delay: 500.ms)
+                      .then(delay: 900.ms)
                       .slideY(
-                        curve: Curves.easeIn,
                         duration: 500.ms,
-                        end: 0.05,
+                        end: 0.3,
                       ),
                 ],
               ),
@@ -125,32 +132,43 @@ class _SplashState extends State<Splash> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Obx(
-                    () => Image.asset(
-                      Assets.splash,
-                      height: 150.0.h,
-                      width: 150.0.h,
-                    )
+                    () => AnimatedSwitcher(
+                            reverseDuration: const Duration(milliseconds: 1000),
+                            duration: const Duration(milliseconds: 1000),
+                            switchInCurve: Curves.ease,
+                            switchOutCurve: Curves.ease,
+                            child: generalConfigController.isBirdSwitched.value
+                                ? Image.asset(
+                                    Assets.splash2,
+                                    height: 150.0.h,
+                                    width: 150.0.h,
+                                  )
+                                : Image.asset(
+                                    Assets.splash,
+                                    height: 150.0.h,
+                                    width: 150.0.h,
+                                  ))
                         .animate(
                             target: generalConfigController
                                     .isGameSplashAnimating.value
                                 ? 1
                                 : 0)
                         .slideY(
-                          duration: 500.ms,
+                          duration: 800.ms,
                           begin: 0,
                           end: 0.3,
                         )
                         .then(delay: 500.ms)
                         .slideY(
-                          // curve: Curves.easeOutExpo,
                           duration: 500.ms,
-                          end: -0.1,
+                          begin: 0.15,
+                          end: 0,
                         )
                         .then(delay: 500.ms)
                         .slideY(
                           curve: Curves.easeIn,
-                          duration: 500.ms,
-                          end: 0.1,
+                          duration: 800.ms,
+                          end: 0.2,
                         ),
                   ),
                   const Text(
@@ -166,7 +184,11 @@ class _SplashState extends State<Splash> {
               )
             ],
           ),
-        ).animate().then(delay: 3000.ms).slideY(begin: 0, end: -1),
+        ).animate().then(delay: 3500.ms).slideY(
+              begin: 0,
+              end: -0.3,
+              curve: Curves.ease,
+            ),
       ),
     );
   }
