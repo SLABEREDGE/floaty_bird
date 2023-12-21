@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.appArcadeCreations.floatyBird"
+    namespace "com.example.floaty_bird" 
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
