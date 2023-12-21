@@ -47,7 +47,7 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 1200));
     generalConfigController.isBirdSwitched.value = false;
     await Future.delayed(const Duration(milliseconds: 600));
-    await Get.to(
+    await Get.offAll(
       () => GameWidget(
         game: game,
         initialActiveOverlays: const [MainMenuScreen.id],
