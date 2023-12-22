@@ -78,7 +78,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
         backgroundColor: Styles.darkThemePrimaryColor,
         messageText: Text(
           message ?? "",
-          style: Get.textTheme.bodyMedium?.copyWith(color: Styles.whiteColor),
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: Styles.whiteColor),
         ),
       ),
     );
@@ -94,7 +97,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 const Duration(seconds: 2)) {
           _lastBackPressed = DateTime.now();
           showGeneralToastMessage(
-              message: 'Press back agian to exit game',
+              message: 'Press back again to exit game',
               snackPosition: SnackPosition.BOTTOM);
           return Future.value(false);
         }

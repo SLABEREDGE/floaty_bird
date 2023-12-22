@@ -54,7 +54,11 @@ class _SplashState extends State<Splash> {
         overlayBuilderMap: {
           'mainMenu': (context, _) => MainMenuScreen(game: game),
           'gameOver': (context, _) => GameOverScreen(game: game),
-          'pauseMenuButton': (context, _) => PauseMenuButton(game: game),
+          'pauseMenuButton': (context, _) => WillPopScope(
+              onWillPop: () {
+                return Future.value(false);
+              },
+              child: PauseMenuButton(game: game)),
           'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
         },
       ),
