@@ -1,3 +1,4 @@
+import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -91,35 +92,45 @@ class GameOverScreen extends StatelessWidget {
                 ),
                 Stack(
                   children: [
-                    Text(
-                      'Score: ${game.bird.score}',
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontFamily: 'Game',
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 3
-                          ..color = Styles.darkGreyColor,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            offset: Offset(5, 5),
-                            blurRadius: 5.0,
-                            color: Colors.grey,
-                          ),
-                          Shadow(
-                            offset: Offset(5, 5),
-                            blurRadius: 10.0,
-                            color: Colors.black,
-                          ),
-                        ],
+                    Obx(
+                      () => Text(
+                        int.parse(generalConfigController.gameHighScore.value) <
+                                game.bird.score
+                            ? 'New HighScore : ${game.bird.score}'
+                            : 'Score: ${game.bird.score}',
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontFamily: 'Game',
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 3
+                            ..color = Styles.darkGreyColor,
+                          shadows: const <Shadow>[
+                            Shadow(
+                              offset: Offset(5, 5),
+                              blurRadius: 5.0,
+                              color: Colors.grey,
+                            ),
+                            Shadow(
+                              offset: Offset(5, 5),
+                              blurRadius: 10.0,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Text(
-                      'Score: ${game.bird.score}',
-                      style: const TextStyle(
-                          fontSize: 50,
-                          color: Colors.white,
-                          fontFamily: 'Game'),
+                    Obx(
+                      () => Text(
+                        int.parse(generalConfigController.gameHighScore.value) <
+                                game.bird.score
+                            ? 'New HighScore : ${game.bird.score}'
+                            : 'Score: ${game.bird.score}',
+                        style: const TextStyle(
+                            fontSize: 50,
+                            color: Colors.white,
+                            fontFamily: 'Game'),
+                      ),
                     ),
                   ],
                 ),
@@ -198,6 +209,7 @@ class GameOverScreen extends StatelessWidget {
   void onHome() {
     game.bird.reset();
     game.overlays.remove('gameOver');
+    game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
     game.pauseEngine();
   }

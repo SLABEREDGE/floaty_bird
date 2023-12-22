@@ -92,15 +92,15 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     widget.game.pauseEngine();
     return WillPopScope(
       onWillPop: () {
-        if (_lastBackPressed == null ||
-            DateTime.now().difference(_lastBackPressed!) >
-                const Duration(seconds: 2)) {
-          _lastBackPressed = DateTime.now();
-          showGeneralToastMessage(
-              message: 'Press back again to exit game',
-              snackPosition: SnackPosition.BOTTOM);
-          return Future.value(false);
-        }
+        // if (_lastBackPressed == null ||
+        //     DateTime.now().difference(_lastBackPressed!) >
+        //         const Duration(seconds: 2)) {
+        //   _lastBackPressed = DateTime.now();
+        //   showGeneralToastMessage(
+        //       message: 'Press back again to exit game',
+        //       snackPosition: SnackPosition.BOTTOM);
+        //   return Future.value(false);
+        // }
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
         return Future.value(true);
       },
