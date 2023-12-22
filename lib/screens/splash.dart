@@ -56,7 +56,9 @@ class _SplashState extends State<Splash> {
           'gameOver': (context, _) => GameOverScreen(game: game),
           'pauseMenuButton': (context, _) => WillPopScope(
               onWillPop: () {
-                game.overlays.add('pauseMenuScreen');
+                if (!game.isHit) {
+                  game.overlays.add('pauseMenuScreen');
+                }
                 return Future.value(false);
               },
               child: PauseMenuButton(game: game)),
