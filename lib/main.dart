@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:floaty_bird/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'controller/general_config_controller.dart';
@@ -9,6 +12,7 @@ import 'utils/extension.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  unawaited(MobileAds.instance.initialize());
   await Hive.initFlutter();
   await generalConfigController.openHiveBox();
 

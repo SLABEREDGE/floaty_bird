@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import '../ads_test.dart';
 import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
@@ -38,18 +39,19 @@ class _SplashState extends State<Splash> {
     );
     generalConfigController.isGameSplashAnimating.value = true;
     await Future.delayed(const Duration(milliseconds: 3600));
-    await Get.to(
-      () => GameWidget(
-        game: game,
-        initialActiveOverlays: const [MainMenuScreen.id],
-        overlayBuilderMap: {
-          'mainMenu': (context, _) => MainMenuScreen(game: game),
-          'gameOver': (context, _) => GameOverScreen(game: game),
-          'pauseMenuButton': (context, _) => PauseMenuButton(game: game),
-          'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
-        },
-      ),
-    );
+    await Get.to(() => MyBannerAdWidget());
+    // await Get.to(
+    //   () => GameWidget(
+    //     game: game,
+    //     initialActiveOverlays: const [MainMenuScreen.id],
+    //     overlayBuilderMap: {
+    //       'mainMenu': (context, _) => MainMenuScreen(game: game),
+    //       'gameOver': (context, _) => GameOverScreen(game: game),
+    //       'pauseMenuButton': (context, _) => PauseMenuButton(game: game),
+    //       'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
+    //     },
+    //   ),
+    // );
   }
 
   @override
