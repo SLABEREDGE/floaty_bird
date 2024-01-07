@@ -16,8 +16,10 @@ class PauseMenuButton extends StatelessWidget {
       left: 20,
       child: GestureDetector(
         onTap: () {
-          game.overlays.add('pauseMenuScreen');
-          game.pauseEngine();
+          if (!game.isHit) {
+            game.pauseEngine();
+            game.overlays.add('pauseMenuScreen');
+          }
         },
         child: Material(
           color: Colors.transparent,

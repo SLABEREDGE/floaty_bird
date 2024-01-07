@@ -43,6 +43,7 @@ class GeneralConfigController extends GetxController {
   RxBool isGameBackgroundChange = false.obs;
   RxBool isGameSoundOn = false.obs;
   RxBool isGameSplashAnimating = false.obs;
+  RxBool isBirdSwitched = false.obs;
 
   // Hive Methods
   Future<void> openHiveBox() async {

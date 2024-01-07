@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
 import '../componets/setting_menu_button.dart';
@@ -167,6 +166,7 @@ class PauseMenuScreen extends StatelessWidget {
   void onHome() {
     game.bird.reset();
     game.overlays.remove('pauseMenuScreen');
+    game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
     game.pauseEngine();
   }
