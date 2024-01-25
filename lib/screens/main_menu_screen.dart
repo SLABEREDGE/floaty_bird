@@ -272,6 +272,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             onTap: () {
                               widget.game.overlays.remove('mainMenu');
                               widget.game.overlays.add('pauseMenuButton');
+                              widget.game.overlays.add('bannerAd');
                               widget.game.resumeEngine();
                             },
                             child: BouncingWidget(

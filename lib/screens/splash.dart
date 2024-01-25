@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-import '../ads_test.dart';
+import '../banner_ad.dart';
 import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
@@ -48,26 +48,27 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 1200));
     generalConfigController.isBirdSwitched.value = false;
     await Future.delayed(const Duration(milliseconds: 600));
-    await Get.offAll(() => MyBannerAdWidget());
-    // await Get.offAll(
-    //   () => GameWidget(
-    //     game: game,
-    //     initialActiveOverlays: const [MainMenuScreen.id],
-    //     overlayBuilderMap: {
-    //       'mainMenu': (context, _) => MainMenuScreen(game: game),
-    //       'gameOver': (context, _) => GameOverScreen(game: game),
-    //       'pauseMenuButton': (context, _) => WillPopScope(
-    //           onWillPop: () {
-    //             if (!game.isHit) {
-    //               game.overlays.add('pauseMenuScreen');
-    //             }
-    //             return Future.value(false);
-    //           },
-    //           child: PauseMenuButton(game: game)),
-    //       'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
-    //     },
-    //   ),
-    // );
+    // await Get.offAll(() => MyBannerAdWidget());
+    await Get.offAll(
+      () => GameWidget(
+        game: game,
+        initialActiveOverlays: const [MainMenuScreen.id],
+        overlayBuilderMap: {
+          'mainMenu': (context, _) => MainMenuScreen(game: game),
+          'gameOver': (context, _) => GameOverScreen(game: game),
+          'bannerAd': (context, _) => MyBannerAdWidget(game: game),
+          'pauseMenuButton': (context, _) => WillPopScope(
+              onWillPop: () {
+                if (!game.isHit) {
+                  game.overlays.add('pauseMenuScreen');
+                }
+                return Future.value(false);
+              },
+              child: PauseMenuButton(game: game)),
+          'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
+        },
+      ),
+    );
   }
 
   @override

@@ -22,7 +22,8 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: MediaQuery.sizeOf(context).height / 2 * 0.15,
+      // top: MediaQuery.sizeOf(context).height / 2 * 0.15,
+      top: MediaQuery.sizeOf(context).height / 2 * 0.25,
       right: 20,
       child: Column(
         children: [
