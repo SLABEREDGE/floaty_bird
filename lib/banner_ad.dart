@@ -19,7 +19,8 @@ class MyBannerAdWidget extends StatefulWidget {
   /// TODO: replace this test ad unit with your own ad unit
   final String adUnitId = Platform.isAndroid
       // Use this ad unit on Android...
-      ? 'ca-app-pub-7487124206061387/9927790439'
+      // ? 'ca-app-pub-7487124206061387/9927790439'
+      ? 'ca-app-pub-3940256099942544/6300978111'
       // ... or this one on iOS.
       : '';
 

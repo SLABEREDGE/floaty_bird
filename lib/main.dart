@@ -16,28 +16,13 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  unawaited(MobileAds.instance.initialize());
+  // unawaited(MobileAds.instance.initialize());
+  await (MobileAds.instance.initialize());
   await Hive.initFlutter();
   await generalConfigController.openHiveBox();
 
   runApp(
     const MyApp(),
-    // await Get.to(
-    //   () => GameWidget(
-    //     game: game,
-    //     initialActiveOverlays: const [MainMenuScreen.id],
-    //     overlayBuilderMap: {
-    //       'mainMenu': (context, _) =>
-    //           MainMenuScreen(game: game),
-    //       'gameOver': (context, _) =>
-    //           GameOverScreen(game: game),
-    //       'pauseMenuButton': (context, _) =>
-    //           PauseMenuButton(game: game),
-    //       'pauseMenuScreen': (context, _) =>
-    //           PauseMenuScreen(game: game),
-    //     },
-    //   ),
-    // );
   );
 }
 

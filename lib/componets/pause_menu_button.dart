@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/ara_theme.dart';
 import '../game/floaty_bird_game.dart';
+import '../utils/assets.dart';
 import '../utils/bouncing_widget.dart';
 
 class PauseMenuButton extends StatelessWidget {
@@ -25,41 +27,10 @@ class PauseMenuButton extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: BouncingWidget(
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.indigoAccent,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    offset: const Offset(4, 4),
-                    blurRadius: 8.0,
-                    color: Styles.whiteColor.withOpacity(0.3),
-                  ),
-                  BoxShadow(
-                    offset: const Offset(4, 4),
-                    blurRadius: 8.0,
-                    color: Styles.blackColor.withOpacity(0.6),
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.pause,
-                size: 25,
-                color: Styles.whiteColor,
-              ),
+            child: SvgPicture.asset(
+              Assets.pauseButton,
+              height: 45,
             ),
-            // Container(
-            //   padding: const EdgeInsets.all(5),
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(8),
-            //   ),
-            //   child: const Icon(
-            //     Icons.pause,
-            //     color: Colors.greenAccent,
-            //   ),
-            // ),
           ),
         ),
       ),

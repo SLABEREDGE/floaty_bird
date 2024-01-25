@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 class Styles {
   static const Color araDarkLogoColor = Color(0xff202124);
+  // static const Color darkBrown = Color(0xffC25507);
+  static const Color darkBrown = Color(0xffA05D20);
   static const Color whiteColor = Color(0xffFFFFFF);
   static const Color blackColor = Color(0xff000000);
   static const Color redColor = Color(0xffE45757);

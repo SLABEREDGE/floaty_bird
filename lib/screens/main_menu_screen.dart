@@ -4,6 +4,7 @@ import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
@@ -279,17 +280,15 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
-                                  Image.asset(
-                                    'assets/images/button.png',
-                                    height: 55,
-                                    // width: 300,
-                                    fit: BoxFit.cover,
+                                  SvgPicture.asset(
+                                    Assets.adsButton,
+                                    height: 60,
                                   ),
                                   Text(
                                     'Tap to start',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      fontFamily: 'sofia',
+                                      fontFamily: 'Marker',
                                       fontWeight: FontWeight.bold,
                                       foreground: Paint()
                                         ..style = PaintingStyle.stroke
@@ -315,7 +314,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                       fontSize: 20,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'sofia',
+                                      fontFamily: 'Marker',
                                     ),
                                   ),
                                 ],
@@ -331,36 +330,42 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   ],
                 ),
                 Positioned(
-                  top: MediaQuery.sizeOf(context).height / 2 * 0.155,
+                  // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
+                  top: MediaQuery.sizeOf(context).height / 2 * 0.25,
                   left: 20,
                   child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    decoration: BoxDecoration(
-                      // color: Colors.blueAccent,
-                      color: Colors.indigoAccent,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          offset: const Offset(4, 4),
-                          blurRadius: 8.0,
-                          color: Styles.whiteColor.withOpacity(0.3),
-                        ),
-                        BoxShadow(
-                          offset: const Offset(4, 4),
-                          blurRadius: 8.0,
-                          color: Styles.blackColor.withOpacity(0.6),
-                        ),
-                      ],
-                    ),
+                    // padding:
+                    //     const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                    // decoration: BoxDecoration(
+                    //   // color: Colors.blueAccent,
+                    //   color: Colors.indigoAccent,
+                    //   borderRadius: BorderRadius.circular(20),
+                    //   boxShadow: <BoxShadow>[
+                    //     BoxShadow(
+                    //       offset: const Offset(4, 4),
+                    //       blurRadius: 8.0,
+                    //       color: Styles.whiteColor.withOpacity(0.3),
+                    //     ),
+                    //     BoxShadow(
+                    //       offset: const Offset(4, 4),
+                    //       blurRadius: 8.0,
+                    //       color: Styles.blackColor.withOpacity(0.6),
+                    //     ),
+                    //   ],
+                    // ),
                     child: Stack(
+                      alignment: Alignment.center,
                       children: [
+                        SvgPicture.asset(
+                          Assets.highScore,
+                          height: 50,
+                        ),
                         Obx(
                           () => Text(
                             'High Score : ${generalConfigController.gameHighScore.value}',
                             style: TextStyle(
                               fontSize: 20,
-                              fontFamily: 'sofia',
+                              fontFamily: 'Marker',
                               height: 1.1,
                               fontWeight: FontWeight.bold,
                               foreground: Paint()
@@ -389,7 +394,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'sofia',
+                              fontFamily: 'Marker',
                               height: 1.1,
                             ),
                           ),
@@ -636,7 +641,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                                   fontSize: 16.0.sp,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: 'sofia',
+                                                  fontFamily: 'Marker',
+                                                  height: 0.8,
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),

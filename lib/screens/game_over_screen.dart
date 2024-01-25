@@ -139,6 +139,27 @@ class GameOverScreen extends StatelessWidget {
                 ),
                 BouncingWidget(
                   child: ElevatedButton(
+                    onPressed: onWatchAds,
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orangeAccent, elevation: 5),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'watch Ad to resume',
+                          style: TextStyle(
+                              fontSize: 20, height: 1.2, fontFamily: 'Game'),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.video_call),
+                      ],
+                    ),
+                  ),
+                ),
+                BouncingWidget(
+                  child: ElevatedButton(
                     onPressed: onRestart,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.deepOrangeAccent, elevation: 5),
@@ -173,25 +194,6 @@ class GameOverScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // ElevatedButton(
-                //   onPressed: onGetBack,
-                //   style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.blueAccent, elevation: 5),
-                //   child: const Row(
-                //     mainAxisSize: MainAxisSize.min,
-                //     children: [
-                //       Text(
-                //         'Leave Game',
-                //         style: TextStyle(
-                //             fontSize: 20, height: 1.2, fontFamily: 'Game'),
-                //       ),
-                //       SizedBox(
-                //         width: 10,
-                //       ),
-                //       Icon(Icons.exit_to_app),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -214,11 +216,7 @@ class GameOverScreen extends StatelessWidget {
     game.pauseEngine();
   }
 
-  void onGetBack() {
-    game.bird.reset();
-    game.overlays.remove('gameOver');
-    game.pauseEngine();
-    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-    // Get.back();
+  void onWatchAds() {
+    game.overlays.add('WatchAdsToResume');
   }
 }

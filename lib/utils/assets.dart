@@ -14,6 +14,7 @@ class Assets {
   static const birdMidFlap = 'bird_midflap.png';
   static const birdUpFlap = 'bird_upflap.png';
   static const birdDownFlap = 'bird_downflap.png';
+  static const bird = 'assets/images/bird_upflap.png';
 
   static const gameOver = 'assets/images/gameover.png';
   static const splash = 'assets/images/splash.png';
@@ -25,6 +26,20 @@ class Assets {
   static const village2Menu = 'assets/images/background_village2_menu.jpg';
   static const walterfallMenu = 'assets/images/background_waterfall_menu.jpg';
   static const message = 'assets/images/message.png';
+  static const watchAdsToResume = 'assets/images/watch_ad_popup.svg';
+  static const adsButton = 'assets/images/ads_button.svg';
+  static const highScore = 'assets/images/high_score_bar.svg';
+
+  static const cancelButton = 'assets/icons/cancel_Button.svg';
+  static const homeButton = 'assets/icons/Home_Button.svg';
+  static const musicOffButton = 'assets/icons/Music_close_button.svg';
+  static const musicOnButton = 'assets/icons/Music_on_Button.svg';
+  static const pauseButton = 'assets/icons/Pause_Button.svg';
+  static const playButton = 'assets/icons/Play_Button.svg';
+  static const retryButton = 'assets/icons/Retry_Button.svg';
+  static const settingsButton = 'assets/icons/Settings_Button.svg';
+  static const soundOnButton = 'assets/icons/Sound_button.svg';
+  static const soundOffButton = 'assets/icons/Sound_Close_Button.svg';
 
   static const flying = 'fly.wav';
   static const collision = 'collision.wav';

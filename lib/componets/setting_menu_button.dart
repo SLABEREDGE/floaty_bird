@@ -1,5 +1,7 @@
+import 'package:floaty_bird/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
@@ -34,29 +36,9 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
               });
             },
             child: BouncingWidget(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      offset: const Offset(4, 4),
-                      blurRadius: 8.0,
-                      color: Styles.whiteColor.withOpacity(0.3),
-                    ),
-                    BoxShadow(
-                      offset: const Offset(4, 4),
-                      blurRadius: 8.0,
-                      color: Styles.blackColor.withOpacity(0.6),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.settings,
-                  size: 25,
-                  color: Styles.whiteColor,
-                ),
+              child: SvgPicture.asset(
+                Assets.settingsButton,
+                height: 45,
               ),
             ),
           ),
@@ -83,31 +65,11 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                     clicked = !clicked;
                   },
                   child: BouncingWidget(
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            offset: const Offset(4, 4),
-                            blurRadius: 8.0,
-                            color: Styles.whiteColor.withOpacity(0.3),
-                          ),
-                          BoxShadow(
-                            offset: const Offset(4, 4),
-                            blurRadius: 8.0,
-                            color: Styles.blackColor.withOpacity(0.6),
-                          ),
-                        ],
-                      ),
-                      child: Icon(
-                        generalConfigController.isGameSoundOn.value
-                            ? Icons.volume_up
-                            : Icons.volume_off,
-                        size: 25,
-                        color: Styles.whiteColor,
-                      ),
+                    child: SvgPicture.asset(
+                      generalConfigController.isGameSoundOn.value
+                          ? Assets.soundOnButton
+                          : Assets.soundOffButton,
+                      height: 45,
                     ),
                   ),
                 ),
@@ -129,29 +91,9 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                 clicked = !clicked;
               },
               child: BouncingWidget(
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        offset: const Offset(4, 4),
-                        blurRadius: 8.0,
-                        color: Styles.whiteColor.withOpacity(0.3),
-                      ),
-                      BoxShadow(
-                        offset: const Offset(4, 4),
-                        blurRadius: 8.0,
-                        color: Styles.blackColor.withOpacity(0.6),
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.exit_to_app,
-                    size: 25,
-                    color: Styles.whiteColor,
-                  ),
+                child: SvgPicture.asset(
+                  Assets.cancelButton,
+                  height: 45,
                 ),
               ),
             ),

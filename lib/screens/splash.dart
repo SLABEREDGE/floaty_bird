@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flame/game.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
+import 'package:floaty_bird/rewards_ad.dart';
 import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +17,7 @@ import '../utils/assets.dart';
 import 'game_over_screen.dart';
 import 'main_menu_screen.dart';
 import 'pause_menu_screen.dart';
+import 'watch_ads_to_resume.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -57,6 +59,7 @@ class _SplashState extends State<Splash> {
           'mainMenu': (context, _) => MainMenuScreen(game: game),
           'gameOver': (context, _) => GameOverScreen(game: game),
           'bannerAd': (context, _) => MyBannerAdWidget(game: game),
+          'WatchAdsToResume': (context, _) => WatchAdsToResume(game: game),
           'pauseMenuButton': (context, _) => WillPopScope(
               onWillPop: () {
                 if (!game.isHit) {
@@ -66,6 +69,7 @@ class _SplashState extends State<Splash> {
               },
               child: PauseMenuButton(game: game)),
           'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
+          'rewardAd': (context, _) => RewardAdWidget(game: game),
         },
       ),
     );
