@@ -40,9 +40,11 @@ class _RewardAdWidgetState extends State<RewardAdWidget> {
             // Nothing to render yet.
             ? SizedBox()
             // The actual ad.
-            : _rewardedAd.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-});
-            // AdWidget(ad: _rewardedAd!),
+            : 
+            AdWidget(ad:   
+_rewardedAd.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+  // Reward the user for watching an ad.
+})),
       ),
     );
   }
