@@ -61,8 +61,11 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
 
   @override
   void initState() {
-    super.initState();
     _loadAd();
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await _loadAd();
+    // });
+    super.initState();
   }
 
   @override
@@ -72,7 +75,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
   }
 
   /// Loads a banner ad.
-  void _loadAd() {
+  Future<void> _loadAd() async {
     final bannerAd = BannerAd(
       size: widget.adSize,
       adUnitId: widget.adUnitId,
@@ -80,7 +83,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
       listener: BannerAdListener(
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
-          log("Add Loaded");
+          log("Banner Add Loaded");
           if (!mounted) {
             ad.dispose();
             return;
