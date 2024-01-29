@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../../../utils/ara_theme.dart';
 import '../../../utils/constants.dart';
+import '../banner_ad.dart';
 import '../componets/setting_menu_button.dart';
 import '../controller/general_config_controller.dart';
 import '../game/floaty_bird_game.dart';
@@ -26,7 +28,6 @@ class MainMenuScreen extends StatefulWidget {
 
 class _MainMenuScreenState extends State<MainMenuScreen> {
   int seletectMap = 0;
-  DateTime? _lastBackPressed;
   Future<void> fetchData() async {
     generalConfigController.gameHighScore.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameHighScore, defaultValue: '0');
@@ -56,52 +57,20 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   @override
   void dispose() {
     super.dispose();
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-    //     overlays: SystemUiOverlay.values); // to re-show bars
-  }
-
-  void showGeneralToastMessage(
-      {String? message, Duration? duration, SnackPosition? snackPosition}) {
-    if (Get.isSnackbarOpen) {
-      return;
-    }
-    Get.showSnackbar(
-      GetSnackBar(
-        isDismissible: false,
-        snackStyle: SnackStyle.FLOATING,
-        snackPosition: snackPosition ?? SnackPosition.TOP,
-        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-        borderRadius: 10.0,
-        duration: duration ?? const Duration(seconds: 2),
-        animationDuration: const Duration(milliseconds: 800),
-        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-        reverseAnimationCurve: Curves.easeOutCubic,
-        backgroundColor: Styles.darkThemePrimaryColor,
-        messageText: Text(
-          message ?? "",
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: Styles.whiteColor),
-        ),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    if (generalConfigController.isGameSoundOn.value) {
+      FlameAudio.bgm.play(
+        Assets.homeSong1,
+      );
+    } else {
+      FlameAudio.bgm.pause();
+    }
     widget.game.pauseEngine();
     return WillPopScope(
       onWillPop: () {
-        // if (_lastBackPressed == null ||
-        //     DateTime.now().difference(_lastBackPressed!) >
-        //         const Duration(seconds: 2)) {
-        //   _lastBackPressed = DateTime.now();
-        //   showGeneralToastMessage(
-        //       message: 'Press back again to exit game',
-        //       snackPosition: SnackPosition.BOTTOM);
-        //   return Future.value(false);
-        // }
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
         return Future.value(true);
       },
@@ -272,9 +241,11 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ? GestureDetector(
                             onTap: () {
                               widget.game.overlays.remove('mainMenu');
+                              widget.game.overlays.add("bannerAd");
                               widget.game.overlays.add('pauseMenuButton');
-                              widget.game.overlays.add('bannerAd');
                               widget.game.resumeEngine();
+                              generalConfigController
+                                  .userResumedUsingAds.value = false;
                             },
                             child: BouncingWidget(
                               child: Stack(
@@ -329,6 +300,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     // ),
                   ],
                 ),
+                MyBannerAdWidget(game: widget.game),
                 Positioned(
                   // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
                   top: MediaQuery.sizeOf(context).height / 2 * 0.25,

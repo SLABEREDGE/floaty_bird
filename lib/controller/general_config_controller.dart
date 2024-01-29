@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
-import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
+import 'package:floaty_bird/utils/common_methods.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 
-import '../utils/ara_theme.dart';
+import '../componets/resume_countdown_widget.dart';
+import '../game/floaty_bird_game.dart';
 
 class GeneralConfigController extends GetxController {
   RxDouble dheight = 0.0.obs;
@@ -44,6 +43,8 @@ class GeneralConfigController extends GetxController {
   RxBool isGameSoundOn = false.obs;
   RxBool isGameSplashAnimating = false.obs;
   RxBool isBirdSwitched = false.obs;
+  RxBool userResumedUsingAds = false.obs;
+  RewardedAd? rewardedAd;
 
   // Hive Methods
   Future<void> openHiveBox() async {
@@ -64,6 +65,79 @@ class GeneralConfigController extends GetxController {
   }
 
   // Common Params Fetching Methods
+
+  // Rewarded Ads IMPL
+
+  Future<void> loadRewardedAd(
+      {required String adUnitId, required FloatyBirdGame game}) async {
+    await RewardedAd.load(
+      // adUnitId: widget.adUnitId,
+      adUnitId: adUnitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) async {
+          log("RewardedAd Add Loaded");
+          // if (!mounted) {
+          //   ad.dispose();
+          //   return;
+          // }
+          rewardedAd = ad;
+          if (rewardedAd != null) {
+            if (rewardedAd == null) {
+              log('Warning: attempt to show rewarded before loaded.');
+              await loadRewardedAd(adUnitId: adUnitId, game: game);
+              return;
+            }
+            rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+              onAdShowedFullScreenContent: (RewardedAd ad) =>
+                  log('ad onAdShowedFullScreenContent.'),
+              onAdDismissedFullScreenContent: (RewardedAd ad) async {
+                log('$ad onAdDismissedFullScreenContent.');
+                game.overlays.remove('rewardAd');
+                log("removed1");
+                game.overlays.remove('WatchAdsToResume');
+                log("removed2");
+                game.overlays.remove('gameOver');
+                log("removed3");
+                game.bird.resetBird();
+                log("removed4");
+                game.overlays.add('countDown');
+                await Future.delayed(const Duration(milliseconds: 4500));
+                log("removed5");
+                game.resumeEngine();
+                log("removed6");
+                generalConfigController.userResumedUsingAds.value = true;
+                ad.dispose();
+              },
+              onAdFailedToShowFullScreenContent:
+                  (RewardedAd ad, AdError error) async {
+                log('$ad onAdFailedToShowFullScreenContent: $error');
+                ad.dispose();
+                await loadRewardedAd(adUnitId: adUnitId, game: game);
+              },
+            );
+
+            rewardedAd!.setImmersiveMode(true);
+            hideLoader();
+            rewardedAd!.show(
+                onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+              log('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+            });
+            rewardedAd = null;
+          }
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (error) {
+          hideLoader();
+          showGeneralToastMessage(
+            message: 'Failed to load Ad!',
+          );
+          log('RewardedAd failed to load: $error');
+        },
+      ),
+    );
+  }
 }
 
 GeneralConfigController generalConfigController = GeneralConfigController();

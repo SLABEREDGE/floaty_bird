@@ -130,25 +130,6 @@ class PauseMenuScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // ElevatedButton(
-                //   onPressed: onGetBack,
-                //   style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.blueAccent),
-                //   child: const Row(
-                //     mainAxisSize: MainAxisSize.min,
-                //     children: [
-                //       Text(
-                //         'Exit',
-                //         style: TextStyle(
-                //             fontSize: 25, height: 1.2, fontFamily: 'Game'),
-                //       ),
-                //       SizedBox(
-                //         width: 10,
-                //       ),
-                //       Icon(Icons.exit_to_app),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -158,13 +139,13 @@ class PauseMenuScreen extends StatelessWidget {
   }
 
   void onRestart() {
-    // game.bird.reset();
     game.overlays.remove('pauseMenuScreen');
     game.resumeEngine();
   }
 
   void onHome() {
-    game.bird.reset();
+    game.bird.resetBird();
+    game.bird.resetScore();
     game.overlays.remove('pauseMenuScreen');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');

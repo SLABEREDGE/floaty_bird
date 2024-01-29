@@ -1,7 +1,9 @@
-import 'dart:ui';
+import 'dart:io';
 
+import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:floaty_bird/utils/bouncing_widget.dart';
+import 'package:floaty_bird/utils/common_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -81,8 +83,15 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                           height: 20,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            widget.game.overlays.add('rewardAd');
+                          onTap: () async {
+                            showLoader();
+                            await generalConfigController.loadRewardedAd(
+                                adUnitId: Platform.isAndroid
+                                    ?
+                                    // 'ca-app-pub-3940256099942544/5354046379'
+                                    'ca-app-pub-7487124206061387/4696479208'
+                                    : '',
+                                game: widget.game);
                           },
                           child: BouncingWidget(
                             child: Stack(
@@ -118,21 +127,21 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                             ),
                           ),
                         )
-                        // .animate(
-                        //   autoPlay: true,
-                        //   onPlay: (controller) => controller.repeat(
-                        //     reverse: true,
-                        //   ),
-                        // )
-                        // .scale(
-                        //   begin: const Offset(0.85, 0.85),
-                        //   end: const Offset(1, 1),
-                        //   curve: Curves.easeInOut,
-                        // )
-                        ,
+                            .animate(
+                              autoPlay: true,
+                              onPlay: (controller) => controller.repeat(
+                                reverse: true,
+                              ),
+                            )
+                            .scale(
+                              begin: const Offset(0.85, 0.85),
+                              end: const Offset(1, 1),
+                              curve: Curves.easeInOut,
+                            ),
                         GestureDetector(
                           onTap: () {
                             widget.game.overlays.remove('WatchAdsToResume');
+
                             widget.game.overlays.add('gameOver');
                           },
                           child: Container(
@@ -158,7 +167,10 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                   ),
                 ),
               ],
-            ),
+            )
+                .animate()
+                .fade(duration: 400.ms, curve: Curves.fastOutSlowIn)
+                .scale(duration: 400.ms, curve: Curves.fastOutSlowIn),
           ),
         ],
       ),

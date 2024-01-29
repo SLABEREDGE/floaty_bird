@@ -1,10 +1,10 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/ara_theme.dart';
 import '../controller/general_config_controller.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/bouncing_widget.dart';
@@ -55,6 +55,7 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                         fieldName: DBFields.gameSoundOn,
                         data: generalConfigController.isGameSoundOn.value,
                       );
+                      FlameAudio.bgm.pause();
                     } else {
                       generalConfigController.isGameSoundOn.value = true;
                       await generalConfigController.setHiveData(
@@ -80,7 +81,8 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
             visible: clicked,
             child: GestureDetector(
               onTap: () {
-                widget.game.bird.reset();
+                widget.game.bird.resetBird();
+                widget.game.bird.resetScore();
                 widget.game.overlays.remove('gameOver');
                 widget.game.overlays.remove('pauseMenuScreen');
                 widget.game.pauseEngine();

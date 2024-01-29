@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utils/ara_theme.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/assets.dart';
 import '../utils/bouncing_widget.dart';

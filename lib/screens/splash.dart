@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flame/game.dart';
+import 'package:floaty_bird/componets/resume_countdown_widget.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
-import 'package:floaty_bird/rewards_ad.dart';
 import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -60,6 +60,7 @@ class _SplashState extends State<Splash> {
           'gameOver': (context, _) => GameOverScreen(game: game),
           'bannerAd': (context, _) => MyBannerAdWidget(game: game),
           'WatchAdsToResume': (context, _) => WatchAdsToResume(game: game),
+          'countDown': (context, _) => ResumeCountDownWidget(game: game),
           'pauseMenuButton': (context, _) => WillPopScope(
               onWillPop: () {
                 if (!game.isHit) {
@@ -69,7 +70,7 @@ class _SplashState extends State<Splash> {
               },
               child: PauseMenuButton(game: game)),
           'pauseMenuScreen': (context, _) => PauseMenuScreen(game: game),
-          'rewardAd': (context, _) => RewardAdWidget(game: game),
+          // 'rewardAd': (context, _) => RewardAdWidget(game: game),
         },
       ),
     );

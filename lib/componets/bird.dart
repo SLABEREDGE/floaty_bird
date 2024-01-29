@@ -56,8 +56,11 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     gameOver();
   }
 
-  void reset() {
+  void resetBird() {
     position = Vector2(50, gameRef.size.y / 2 - size.y / 2);
+  }
+
+  void resetScore() {
     score = 0;
   }
 
@@ -67,7 +70,11 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     }
     game.isHit = true;
     gameRef.pauseEngine();
-    gameRef.overlays.add('WatchAdsToResume');
+    if (!generalConfigController.userResumedUsingAds.value) {
+      gameRef.overlays.add('WatchAdsToResume');
+    } else {
+      gameRef.overlays.add('gameOver');
+    }
     game.isHit = true;
   }
 

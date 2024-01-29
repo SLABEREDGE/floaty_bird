@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,7 @@ import '../componets/setting_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/bouncing_widget.dart';
+import '../utils/common_methods.dart';
 
 class GameOverScreen extends StatelessWidget {
   final FloatyBirdGame game;
@@ -137,24 +140,31 @@ class GameOverScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                BouncingWidget(
-                  child: ElevatedButton(
-                    onPressed: onWatchAds,
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orangeAccent, elevation: 5),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'watch Ad to resume',
-                          style: TextStyle(
-                              fontSize: 20, height: 1.2, fontFamily: 'Game'),
+                Obx(
+                  () => Visibility(
+                    visible: !generalConfigController.userResumedUsingAds.value,
+                    child: BouncingWidget(
+                      child: ElevatedButton(
+                        onPressed: onWatchAds,
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orangeAccent, elevation: 5),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'watch Ad to resume',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  height: 1.2,
+                                  fontFamily: 'Game'),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.video_call),
+                          ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.video_call),
-                      ],
+                      ),
                     ),
                   ),
                 ),
@@ -203,20 +213,33 @@ class GameOverScreen extends StatelessWidget {
   }
 
   void onRestart() {
+    generalConfigController.userResumedUsingAds.value = false;
     game.overlays.remove('gameOver');
     game.resumeEngine();
-    game.bird.reset();
+    game.bird.resetBird();
+    game.bird.resetScore();
   }
 
   void onHome() {
-    game.bird.reset();
+    generalConfigController.userResumedUsingAds.value = false;
+    game.bird.resetBird();
+    game.bird.resetScore();
     game.overlays.remove('gameOver');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
     game.pauseEngine();
   }
 
-  void onWatchAds() {
-    game.overlays.add('WatchAdsToResume');
+  Future<void> onWatchAds() async {
+    showLoader();
+    await generalConfigController.loadRewardedAd(
+        adUnitId: Platform.isAndroid
+            ?
+            // 'ca-app-pub-3940256099942544/5354046379'
+            'ca-app-pub-7487124206061387/4696479208'
+            : '',
+        game: game);
+
+    // game.overlays.add('WatchAdsToResume');
   }
 }

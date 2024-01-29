@@ -16,8 +16,8 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  // unawaited(MobileAds.instance.initialize());
-  await (MobileAds.instance.initialize());
+  unawaited(MobileAds.instance.initialize());
+  // await (MobileAds.instance.initialize());
   await Hive.initFlutter();
   await generalConfigController.openHiveBox();
 

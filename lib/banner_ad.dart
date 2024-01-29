@@ -45,7 +45,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: widget.adSize.width.toDouble(),
             height: widget.adSize.height.toDouble(),
             child: _bannerAd == null
@@ -62,9 +62,6 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
   @override
   void initState() {
     _loadAd();
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   await _loadAd();
-    // });
     super.initState();
   }
 
