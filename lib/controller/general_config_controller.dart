@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:flame_audio/flame_audio.dart';
+import 'package:floaty_bird/utils/assets.dart';
 import 'package:floaty_bird/utils/common_methods.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -99,6 +101,9 @@ class GeneralConfigController extends GetxController {
                 game.overlays.remove('WatchAdsToResume');
                 log("removed2");
                 game.overlays.remove('gameOver');
+                if (generalConfigController.isGameSoundOn.value) {
+                  FlameAudio.bgm.play(Assets.gamePlaySong);
+                }
                 log("removed3");
                 game.bird.resetBird();
                 log("removed4");

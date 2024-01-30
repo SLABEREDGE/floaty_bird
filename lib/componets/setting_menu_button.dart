@@ -51,6 +51,7 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                   onTap: () async {
                     if (generalConfigController.isGameSoundOn.value) {
                       generalConfigController.isGameSoundOn.value = false;
+                      widget.game.playSound = false;
                       await generalConfigController.setHiveData(
                         fieldName: DBFields.gameSoundOn,
                         data: generalConfigController.isGameSoundOn.value,
@@ -58,10 +59,12 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                       FlameAudio.bgm.pause();
                     } else {
                       generalConfigController.isGameSoundOn.value = true;
+                      widget.game.playSound = true;
                       await generalConfigController.setHiveData(
                         fieldName: DBFields.gameSoundOn,
                         data: generalConfigController.isGameSoundOn.value,
                       );
+                      FlameAudio.bgm.resume();
                     }
                     clicked = !clicked;
                   },

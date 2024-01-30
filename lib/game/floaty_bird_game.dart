@@ -18,6 +18,7 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   late TextComponent score;
   Timer interval = Timer(Config.pipeInterval, repeat: true);
   bool isHit = false;
+  bool playSound = true;
 
   @override
   Future<void> onLoad() async {

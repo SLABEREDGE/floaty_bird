@@ -61,10 +61,12 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (generalConfigController.isGameSoundOn.value) {
-      FlameAudio.bgm.play(
-        Assets.homeSong1,
-      );
+    if (widget.game.playSound) {
+      if (!FlameAudio.bgm.isPlaying) {
+        FlameAudio.bgm.play(
+          Assets.homeSong1,
+        );
+      }
     } else {
       FlameAudio.bgm.pause();
     }
@@ -240,10 +242,16 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             false)
                         ? GestureDetector(
                             onTap: () {
+                              if (generalConfigController.isGameSoundOn.value) {
+                                FlameAudio.bgm.pause();
+                              }
                               widget.game.overlays.remove('mainMenu');
                               widget.game.overlays.add("bannerAd");
                               widget.game.overlays.add('pauseMenuButton');
                               widget.game.resumeEngine();
+                              if (generalConfigController.isGameSoundOn.value) {
+                                FlameAudio.bgm.play(Assets.gamePlaySong);
+                              }
                               generalConfigController
                                   .userResumedUsingAds.value = false;
                             },

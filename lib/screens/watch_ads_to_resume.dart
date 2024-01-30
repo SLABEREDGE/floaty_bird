@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:floaty_bird/utils/bouncing_widget.dart';
@@ -84,6 +85,9 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                         ),
                         GestureDetector(
                           onTap: () async {
+                            if (generalConfigController.isGameSoundOn.value) {
+                              FlameAudio.bgm.pause();
+                            }
                             showLoader();
                             await generalConfigController.loadRewardedAd(
                                 adUnitId: Platform.isAndroid
@@ -141,8 +145,10 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                         GestureDetector(
                           onTap: () {
                             widget.game.overlays.remove('WatchAdsToResume');
-
                             widget.game.overlays.add('gameOver');
+                            if (generalConfigController.isGameSoundOn.value) {
+                              FlameAudio.bgm.resume();
+                            }
                           },
                           child: Container(
                             color: Colors.transparent,

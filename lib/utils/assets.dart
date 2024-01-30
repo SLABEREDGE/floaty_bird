@@ -46,4 +46,5 @@ class Assets {
   static const point = 'point.wav';
   static const homeSong1 = 'home_song_loop.wav';
   static const homeSong2 = 'home_song_loop.mp3';
+  static const gamePlaySong = 'game_play_bg.mp3';
 }

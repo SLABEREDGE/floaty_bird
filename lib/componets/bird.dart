@@ -67,6 +67,8 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   Future<void> gameOver() async {
     if (generalConfigController.isGameSoundOn.value) {
       FlameAudio.play(Assets.collision);
+      FlameAudio.bgm.stop();
+      FlameAudio.bgm.play(Assets.homeSong1);
     }
     game.isHit = true;
     gameRef.pauseEngine();
