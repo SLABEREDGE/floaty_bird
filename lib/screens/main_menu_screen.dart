@@ -36,6 +36,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
+    widget.game.playSound = generalConfigController.isGameSoundOn.value;
   }
 
   @override
@@ -62,7 +63,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   @override
   Widget build(BuildContext context) {
     if (widget.game.playSound) {
-      if (!FlameAudio.bgm.isPlaying) {
+      if (widget.game.isBgPlaying) {
+      } else {
         FlameAudio.bgm.play(
           Assets.homeSong1,
         );
@@ -74,6 +76,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     return WillPopScope(
       onWillPop: () {
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        FlameAudio.bgm.stop();
         return Future.value(true);
       },
       child: Scaffold(
@@ -140,14 +143,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         duration: 800.ms,
                       ),
                 ),
-                SettingsMenuButton(game: widget.game),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Stack(
                       children: [
                         Text(
-                          'Floaty Bird',
+                          'Flappy Bird',
                           style: TextStyle(
                             fontSize: 65,
                             fontFamily: 'Game',
@@ -170,7 +172,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           ),
                         ),
                         const Text(
-                          'Floaty Bird',
+                          'Flappy Bird',
                           style: TextStyle(
                             fontSize: 65,
                             color: Colors.white,
@@ -234,9 +236,27 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     Image.asset(
                       'assets/images/bird_upflap.png',
                       height: 100.0.h,
-                    ),
+                    )
+                        .animate(
+                          autoPlay: true,
+                          onPlay: (controller) => controller.repeat(
+                            reverse: true,
+                          ),
+                        )
+                        .scale(
+                          duration: 1300.ms,
+                          begin: const Offset(0.95, 0.95),
+                          end: const Offset(1, 1),
+                          curve: Curves.easeInOut,
+                        ),
+                    // .moveY(
+                    //   duration: 1000.ms,
+                    //   begin: 0,
+                    //   end: 15,
+                    //   curve: Curves.easeInOut,
+                    // ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     (generalConfigController.isGameBackgroundChange.value ==
                             false)
@@ -300,6 +320,18 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               ),
                             ),
                           )
+                            .animate(
+                              autoPlay: true,
+                              onPlay: (controller) => controller.repeat(
+                                reverse: true,
+                              ),
+                            )
+                            .scale(
+                              duration: 1300.ms,
+                              begin: const Offset(0.95, 0.95),
+                              end: const Offset(1, 1),
+                              curve: Curves.easeInOut,
+                            )
                         : const CircularProgressIndicator(
                             color: Styles.whiteColor,
                           ),
@@ -308,6 +340,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     // ),
                   ],
                 ),
+                SettingsMenuButton(game: widget.game),
                 MyBannerAdWidget(game: widget.game),
                 Positioned(
                   // top: MediaQuery.sizeOf(context).height / 2 * 0.155,

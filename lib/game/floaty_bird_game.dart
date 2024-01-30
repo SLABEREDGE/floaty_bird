@@ -19,6 +19,7 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   Timer interval = Timer(Config.pipeInterval, repeat: true);
   bool isHit = false;
   bool playSound = true;
+  bool isBgPlaying = false;
 
   @override
   Future<void> onLoad() async {

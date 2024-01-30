@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-
 import '../banner_ad.dart';
 import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/assets.dart';
+import '../utils/constants.dart';
 import 'game_over_screen.dart';
 import 'main_menu_screen.dart';
 import 'pause_menu_screen.dart';
@@ -50,7 +50,8 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 1200));
     generalConfigController.isBirdSwitched.value = false;
     await Future.delayed(const Duration(milliseconds: 600));
-    // await Get.offAll(() => MyBannerAdWidget());
+    game.playSound = await generalConfigController.fetchHiveData(
+        fieldName: DBFields.gameSoundOn, defaultValue: true);
     await Get.offAll(
       () => GameWidget(
         game: game,
@@ -99,7 +100,8 @@ class _SplashState extends State<Splash> {
                     width: 150.0.h,
                   ),
                   const Text(
-                    'Floaty Bird',
+                    // 'Floaty Bird',
+                    'Flappy Bird',
                     style: TextStyle(
                       fontSize: 60,
                       color: Colors.orangeAccent,
@@ -187,7 +189,8 @@ class _SplashState extends State<Splash> {
                         ),
                   ),
                   const Text(
-                    'Floaty Bird',
+                    'Flappy Bird',
+                    // 'Floaty Bird',
                     style: TextStyle(
                       fontSize: 60,
                       color: Colors.transparent,

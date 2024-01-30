@@ -92,6 +92,7 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                 // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                 //     overlays: SystemUiOverlay.values);
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                FlameAudio.bgm.stop();
                 // Get.back();
                 clicked = !clicked;
               },

@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
+import 'package:floaty_bird/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -213,11 +215,13 @@ class GameOverScreen extends StatelessWidget {
   }
 
   void onRestart() {
+    FlameAudio.bgm.stop();
     generalConfigController.userResumedUsingAds.value = false;
     game.overlays.remove('gameOver');
     game.resumeEngine();
     game.bird.resetBird();
     game.bird.resetScore();
+    FlameAudio.bgm.play(Assets.gamePlaySong);
   }
 
   void onHome() {
@@ -227,6 +231,7 @@ class GameOverScreen extends StatelessWidget {
     game.overlays.remove('gameOver');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
+    game.isBgPlaying = true;
     game.pauseEngine();
   }
 

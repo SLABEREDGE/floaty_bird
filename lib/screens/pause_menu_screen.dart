@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,6 +17,7 @@ class PauseMenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlameAudio.bgm.pause();
     game.pauseEngine();
     return Material(
       color: Colors.black38,
@@ -139,6 +141,7 @@ class PauseMenuScreen extends StatelessWidget {
   }
 
   void onRestart() {
+    FlameAudio.bgm.resume();
     game.overlays.remove('pauseMenuScreen');
     game.resumeEngine();
   }
@@ -149,6 +152,7 @@ class PauseMenuScreen extends StatelessWidget {
     game.overlays.remove('pauseMenuScreen');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
+    game.isBgPlaying = false;
     game.pauseEngine();
   }
 
