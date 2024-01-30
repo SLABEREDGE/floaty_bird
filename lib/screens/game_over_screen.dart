@@ -236,6 +236,9 @@ class GameOverScreen extends StatelessWidget {
   }
 
   Future<void> onWatchAds() async {
+    if (generalConfigController.isGameSoundOn.value) {
+      FlameAudio.bgm.pause();
+    }
     showLoader();
     await generalConfigController.loadRewardedAd(
         adUnitId: Platform.isAndroid
