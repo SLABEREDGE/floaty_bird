@@ -9,12 +9,16 @@ class Assets {
   static const cityGameBg = 'city_game_bg.png';
   static const spaceGameBg = 'space_game_bg.png';
   static const planetGameBg = 'planet_game_bg.png';
+  static const galaxyGameBg = 'galaxy_game_bg.png';
   static const walterfallBg = 'waterfall_game_bg.png';
-  static const village2Bg = 'background_village2.png';
 
   static const waterFallGround = 'waterfall_ground.png';
   static const nebulaGround = 'nebula_ground.png';
   static const cityGround = 'city_ground.png';
+  static const spaceGround = 'space_ground.png';
+  static const planetGround = 'planet_ground.png';
+  static const galaxyGround = 'galaxy_ground.png';
+  static const villageGround = 'nebulaground1.png';
   static const clouds = 'clouds.png';
   static const pipe = 'pipe.png';
   static const pipeRotated = 'pipe_rotated.png';
@@ -36,6 +40,7 @@ class Assets {
   static const cityMenu = 'assets/images/city_menu_bg.png';
   static const spaceMenu = 'assets/images/space_menu_bg.png';
   static const planetMenu = 'assets/images/planet_menu_bg.png';
+  static const galaxyMenu = 'assets/images/galaxy_menu_bg.png';
   static const walterfallMenu = 'assets/images/waterfall_menu_bg.jpg';
   static const village2Menu = 'assets/images/background_village2_menu.jpg';
 

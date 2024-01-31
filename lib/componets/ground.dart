@@ -57,19 +57,19 @@ class Ground extends ParallaxComponent<FloatyBirdGame>
         data: '2',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '3') {
-      ground = await Flame.images.load(Assets.cityGround);
+      ground = await Flame.images.load(Assets.spaceGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '3',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '4') {
-      ground = await Flame.images.load(Assets.cityGround);
+      ground = await Flame.images.load(Assets.planetGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '4',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '5') {
-      ground = await Flame.images.load(Assets.cityGround);
+      ground = await Flame.images.load(Assets.galaxyGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '5',

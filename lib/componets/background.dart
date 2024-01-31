@@ -18,7 +18,7 @@ class Background extends SpriteGroupComponent<BackgroundImage>
     final ruins = await gameRef.loadSprite(Assets.cityGameBg);
     final temple = await gameRef.loadSprite(Assets.spaceGameBg);
     final village = await gameRef.loadSprite(Assets.planetGameBg);
-    final village2 = await gameRef.loadSprite(Assets.village2Bg);
+    final village2 = await gameRef.loadSprite(Assets.galaxyGameBg);
     final waterfall = await gameRef.loadSprite(Assets.walterfallBg);
     // current = BackgroundImage.waterfall;
     current = await getBackground();

@@ -629,7 +629,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                                                   ? Assets
                                                                       .planetMenu
                                                                   : Assets
-                                                                      .village2Menu,
+                                                                      .galaxyMenu,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
