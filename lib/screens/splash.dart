@@ -44,6 +44,13 @@ class _SplashState extends State<Splash> {
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
     game.playSound = generalConfigController.isGameSoundOn.value;
+    generalConfigController.loadRewardedAd(
+        adUnitId: Platform.isAndroid
+            ?
+            // 'ca-app-pub-3940256099942544/5354046379'
+            'ca-app-pub-7487124206061387/4696479208'
+            : '',
+        game: game);
   }
 
   Future<void> fetchData() async {

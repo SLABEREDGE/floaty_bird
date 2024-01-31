@@ -24,6 +24,7 @@ class GeneralConfigController extends GetxController {
   RxString intUDID = "".obs;
   RxDouble lat = 0.0.obs;
   RxDouble long = 0.0.obs;
+  RxBool userEarnedReward = false.obs;
 
   RxBool isFromSplash = false.obs;
   RxBool isDarkMode = false.obs;
@@ -91,29 +92,44 @@ class GeneralConfigController extends GetxController {
               await loadRewardedAd(adUnitId: adUnitId, game: game);
               return;
             }
+            rewardedAd!.onUserEarnedRewardCallback = (ad, reward) {
+              log('user earned reward ============>');
+            };
+
             rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
               onAdShowedFullScreenContent: (RewardedAd ad) =>
                   log('ad onAdShowedFullScreenContent.'),
               onAdDismissedFullScreenContent: (RewardedAd ad) async {
                 log('$ad onAdDismissedFullScreenContent.');
-                game.overlays.remove('rewardAd');
-                log("removed1");
-                game.overlays.remove('WatchAdsToResume');
-                log("removed2");
-                game.overlays.remove('gameOver');
-                if (generalConfigController.isGameSoundOn.value) {
-                  FlameAudio.bgm.play(Assets.gamePlaySong);
+                if (userEarnedReward.value) {
+                  game.overlays.remove('rewardAd');
+                  log("removed1");
+                  game.overlays.remove('WatchAdsToResume');
+                  log("removed2");
+                  game.overlays.remove('gameOver');
+                  if (generalConfigController.isGameSoundOn.value) {
+                    FlameAudio.bgm.play(Assets.gamePlaySong);
+                  }
+                  log("removed3");
+                  game.overlays.add('countDown');
+                  await Future.delayed(const Duration(milliseconds: 4500));
+                  log("removed4");
+                  game.resumeEngine();
+                  log("removed5");
+                  game.bird.resetBird();
+                  log("removed6");
+                  generalConfigController.userResumedUsingAds.value = true;
+                  userEarnedReward.value = false;
+                } else {
+                  generalConfigController.userResumedUsingAds.value = true;
+                  game.overlays.remove('rewardAd');
+                  log("removed1");
+                  game.overlays.remove('WatchAdsToResume');
+                  log("removed2");
+                  game.overlays.add('gameOver');
                 }
-                log("removed3");
-                game.bird.resetBird();
-                log("removed4");
-                game.overlays.add('countDown');
-                await Future.delayed(const Duration(milliseconds: 4500));
-                log("removed5");
-                game.resumeEngine();
-                log("removed6");
-                generalConfigController.userResumedUsingAds.value = true;
                 ad.dispose();
+                await loadRewardedAd(adUnitId: adUnitId, game: game);
               },
               onAdFailedToShowFullScreenContent:
                   (RewardedAd ad, AdError error) async {
@@ -124,12 +140,12 @@ class GeneralConfigController extends GetxController {
             );
 
             rewardedAd!.setImmersiveMode(true);
-            hideLoader();
-            rewardedAd!.show(
-                onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
-              log('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
-            });
-            rewardedAd = null;
+            // hideLoader();
+            // rewardedAd!.show(onUserEarnedReward:
+            //     (AdWithoutView ad, RewardItem reward) async {
+            //   userEarnedReward.value = true;
+            // });
+            // rewardedAd = null;
           }
         },
         // Called when an ad request failed.

@@ -54,6 +54,7 @@ class Assets {
   static const settingsButton = 'assets/icons/Settings_Button.svg';
   static const soundOnButton = 'assets/icons/Sound_button.svg';
   static const soundOffButton = 'assets/icons/Sound_Close_Button.svg';
+  static const frame = 'assets/images/frame.svg';
 
   static const flying = 'fly.wav';
   static const collision = 'collision.wav';

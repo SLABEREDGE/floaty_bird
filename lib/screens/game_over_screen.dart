@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flame_audio/flame_audio.dart';
@@ -6,6 +7,7 @@ import 'package:floaty_bird/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../componets/setting_menu_button.dart';
 import '../game/floaty_bird_game.dart';
@@ -239,14 +241,23 @@ class GameOverScreen extends StatelessWidget {
     if (generalConfigController.isGameSoundOn.value) {
       FlameAudio.bgm.pause();
     }
-    showLoader();
-    await generalConfigController.loadRewardedAd(
-        adUnitId: Platform.isAndroid
-            ?
-            // 'ca-app-pub-3940256099942544/5354046379'
-            'ca-app-pub-7487124206061387/4696479208'
-            : '',
-        game: game);
+    // showLoader();
+    // await generalConfigController.loadRewardedAd(
+    //     adUnitId: Platform.isAndroid
+    //         ?
+    //         // 'ca-app-pub-3940256099942544/5354046379'
+    //         'ca-app-pub-7487124206061387/4696479208'
+    //         : '',
+    //     game: game);
+
+    if (generalConfigController.rewardedAd != null) {
+      generalConfigController.rewardedAd!.show(
+          onUserEarnedReward: (AdWithoutView ad, RewardItem reward) async {
+        generalConfigController.userEarnedReward.value = true;
+      });
+    } else {
+      log("Adddddddssss is nullllll =====>");
+    }
 
     // game.overlays.add('WatchAdsToResume');
   }

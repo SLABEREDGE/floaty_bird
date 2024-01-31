@@ -681,6 +681,15 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                           ),
                                         ),
                                       ),
+                                      // SvgPicture.asset(
+                                      //   Assets.frame,
+                                      //   height: generalConfigController
+                                      //           .dheight.value *
+                                      //       0.16,
+                                      //   width: generalConfigController
+                                      //           .dwidth.value *
+                                      //       0.26,
+                                      // ),
                                       Positioned(
                                         top: 8,
                                         right: 8,
