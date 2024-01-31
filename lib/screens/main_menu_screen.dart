@@ -90,18 +90,18 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   generalConfigController.gameBackgroundImage.value == '0'
                       ? Assets.walterfallMenu
                       : generalConfigController.gameBackgroundImage.value == '1'
-                          ? Assets.forestMenu
+                          ? Assets.nebulaMenu
                           : generalConfigController.gameBackgroundImage.value ==
                                   '2'
-                              ? Assets.ruinsMenu
+                              ? Assets.cityMenu
                               : generalConfigController
                                           .gameBackgroundImage.value ==
                                       '3'
-                                  ? Assets.templeMenu
+                                  ? Assets.spaceMenu
                                   : generalConfigController
                                               .gameBackgroundImage.value ==
                                           '4'
-                                      ? Assets.villageMenu
+                                      ? Assets.planetMenu
                                       : Assets.village2Menu,
                 ),
                 fit: BoxFit.cover,
@@ -116,19 +116,19 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ? Assets.walterfallMenu
                         : generalConfigController.gameBackgroundImage.value ==
                                 '1'
-                            ? Assets.forestMenu
+                            ? Assets.nebulaMenu
                             : generalConfigController
                                         .gameBackgroundImage.value ==
                                     '2'
-                                ? Assets.ruinsMenu
+                                ? Assets.cityMenu
                                 : generalConfigController
                                             .gameBackgroundImage.value ==
                                         '3'
-                                    ? Assets.templeMenu
+                                    ? Assets.spaceMenu
                                     : generalConfigController
                                                 .gameBackgroundImage.value ==
                                             '4'
-                                        ? Assets.villageMenu
+                                        ? Assets.planetMenu
                                         : Assets.village2Menu,
                     height: generalConfigController.dheight.value,
                     width: generalConfigController.dwidth.value,
@@ -234,7 +234,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       height: 20,
                     ),
                     Image.asset(
-                      'assets/images/bird_upflap.png',
+                      Assets.bird,
                       height: 100.0.h,
                     )
                         .animate(
@@ -261,7 +261,9 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     (generalConfigController.isGameBackgroundChange.value ==
                             false)
                         ? GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              // await widget.game.background.onLoad();
+                              // await widget.game.ground.onLoad();
                               if (generalConfigController.isGameSoundOn.value) {
                                 FlameAudio.bgm.pause();
                               }
@@ -544,7 +546,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                     seletectMap = index;
                                   }
 
-                                  await widget.game.background.getBackground();
+                                  await widget.game.background.onLoad();
+                                  await widget.game.ground.onLoad();
+                                  // await widget.game.background.getBackground();
+                                  // await widget.game.ground.getGround();
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -597,17 +602,30 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                               : null,
                                           image: DecorationImage(
                                             image: AssetImage(
+                                              // index == 0
+                                              //     ? 'assets/images/background_waterfall.png'
+                                              //     : index == 1
+                                              //         ? 'assets/images/background_forest.png'
+                                              //         : index == 2
+                                              //             ? 'assets/images/background_ruins.png'
+                                              //             : index == 3
+                                              //                 ? 'assets/images/background_temple.png'
+                                              //                 : index == 4
+                                              //                     ? 'assets/images/background_village.png'
+                                              //                     : 'assets/images/background_village2.png',
                                               index == 0
-                                                  ? 'assets/images/background_waterfall.png'
+                                                  ? Assets.walterfallMenu
                                                   : index == 1
-                                                      ? 'assets/images/background_forest.png'
+                                                      ? Assets.nebulaMenu
                                                       : index == 2
-                                                          ? 'assets/images/background_ruins.png'
+                                                          ? Assets.cityMenu
                                                           : index == 3
-                                                              ? 'assets/images/background_temple.png'
+                                                              ? Assets.spaceMenu
                                                               : index == 4
-                                                                  ? 'assets/images/background_village.png'
-                                                                  : 'assets/images/background_village2.png',
+                                                                  ? Assets
+                                                                      .planetMenu
+                                                                  : Assets
+                                                                      .village2Menu,
                                             ),
                                             fit: BoxFit.cover,
                                           ),

@@ -14,13 +14,14 @@ class Background extends SpriteGroupComponent<BackgroundImage>
   Future<void> onLoad() async {
     print(
         "generalConfigController.backgroundImage.value ${generalConfigController.gameBackgroundImage.value}");
-    final forest = await gameRef.loadSprite(Assets.forestBg);
-    final ruins = await gameRef.loadSprite(Assets.ruinsBg);
-    final temple = await gameRef.loadSprite(Assets.templeBg);
-    final village = await gameRef.loadSprite(Assets.villageBg);
+    final forest = await gameRef.loadSprite(Assets.nebulaGameBg);
+    final ruins = await gameRef.loadSprite(Assets.cityGameBg);
+    final temple = await gameRef.loadSprite(Assets.spaceGameBg);
+    final village = await gameRef.loadSprite(Assets.planetGameBg);
     final village2 = await gameRef.loadSprite(Assets.village2Bg);
     final waterfall = await gameRef.loadSprite(Assets.walterfallBg);
-    current = BackgroundImage.waterfall;
+    // current = BackgroundImage.waterfall;
+    current = await getBackground();
     // final background = await Flame.images.load(Assets.background1);
     size = gameRef.size;
     sprites = {
@@ -34,7 +35,7 @@ class Background extends SpriteGroupComponent<BackgroundImage>
     // sprite = Sprite(background);
   }
 
-  Future<void> getBackground() async {
+  Future<BackgroundImage?> getBackground() async {
     if (generalConfigController.gameBackgroundImage.value == '0') {
       current = BackgroundImage.waterfall;
       await generalConfigController.setHiveData(
@@ -78,5 +79,6 @@ class Background extends SpriteGroupComponent<BackgroundImage>
         data: '0',
       );
     }
+    return current;
   }
 }

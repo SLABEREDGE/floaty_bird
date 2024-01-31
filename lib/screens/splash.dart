@@ -31,7 +31,19 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     fetchData();
+    fetchData2();
     super.initState();
+  }
+
+  Future<void> fetchData2() async {
+    generalConfigController.gameHighScore.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameHighScore, defaultValue: '0');
+    generalConfigController.gameBackgroundImage.value =
+        await generalConfigController.fetchHiveData(
+            fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
+    generalConfigController.isGameSoundOn.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
+    game.playSound = generalConfigController.isGameSoundOn.value;
   }
 
   Future<void> fetchData() async {
