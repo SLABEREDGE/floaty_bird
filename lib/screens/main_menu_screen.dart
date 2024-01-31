@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flame_audio/flame_audio.dart';
@@ -64,6 +65,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   Widget build(BuildContext context) {
     if (widget.game.playSound) {
       if (widget.game.isBgPlaying) {
+        log("widget.game.isBgPlaying ${widget.game.isBgPlaying}");
       } else {
         FlameAudio.bgm.play(
           Assets.homeSong1,
@@ -270,6 +272,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               widget.game.overlays.remove('mainMenu');
                               widget.game.overlays.add("bannerAd");
                               widget.game.overlays.add('pauseMenuButton');
+                              widget.game.bird.resetBird();
+                              widget.game.bird.resetScore();
                               widget.game.resumeEngine();
                               if (generalConfigController.isGameSoundOn.value) {
                                 FlameAudio.bgm.play(Assets.gamePlaySong);

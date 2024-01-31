@@ -66,7 +66,9 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
                       );
                       FlameAudio.bgm.resume();
                     }
-                    clicked = !clicked;
+                    setState(() {
+                      clicked = !clicked;
+                    });
                   },
                   child: BouncingWidget(
                     child: SvgPicture.asset(

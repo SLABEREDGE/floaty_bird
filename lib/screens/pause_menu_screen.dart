@@ -1,4 +1,5 @@
 import 'package:flame_audio/flame_audio.dart';
+import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -141,7 +142,9 @@ class PauseMenuScreen extends StatelessWidget {
   }
 
   void onRestart() {
-    FlameAudio.bgm.resume();
+    if (generalConfigController.isGameSoundOn.value) {
+      FlameAudio.bgm.resume();
+    }
     game.overlays.remove('pauseMenuScreen');
     game.resumeEngine();
   }

@@ -228,13 +228,16 @@ class GameOverScreen extends StatelessWidget {
 
   void onHome() {
     generalConfigController.userResumedUsingAds.value = false;
-    game.bird.resetBird();
-    game.bird.resetScore();
     game.overlays.remove('gameOver');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
-    game.isBgPlaying = true;
-    game.pauseEngine();
+    game.bird.resetBird();
+    game.bird.resetScore();
+    if (generalConfigController.isGameSoundOn.value) {
+      game.isBgPlaying = true;
+    }
+    // game.isBgPlaying = true;
+    // game.pauseEngine();
   }
 
   Future<void> onWatchAds() async {
