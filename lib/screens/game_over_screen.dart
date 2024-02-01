@@ -223,7 +223,11 @@ class GameOverScreen extends StatelessWidget {
     game.resumeEngine();
     game.bird.resetBird();
     game.bird.resetScore();
-    FlameAudio.bgm.play(Assets.gamePlaySong);
+    game.interval.reset(); //added to reset pipes
+    log("game.score =====> ${game.score.text}");
+    if (generalConfigController.isGameSoundOn.value) {
+      FlameAudio.bgm.play(Assets.gamePlaySong);
+    }
   }
 
   void onHome() {

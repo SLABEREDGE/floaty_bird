@@ -264,14 +264,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             false)
                         ? GestureDetector(
                             onTap: () async {
-                              // await widget.game.background.onLoad();
-                              // await widget.game.ground.onLoad();
                               if (generalConfigController.isGameSoundOn.value) {
                                 FlameAudio.bgm.pause();
                               }
                               widget.game.overlays.remove('mainMenu');
                               widget.game.overlays.add("bannerAd");
                               widget.game.overlays.add('pauseMenuButton');
+                              widget.game.interval.reset();
                               widget.game.bird.resetBird();
                               widget.game.bird.resetScore();
                               widget.game.resumeEngine();
