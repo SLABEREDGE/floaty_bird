@@ -1,8 +1,12 @@
 enum BackgroundImage {
+  city,
+  desert,
   forest,
-  ruins,
-  temple,
-  village,
-  village2,
+  hell,
+  ice,
+  lava,
+  mountain,
+  nebula,
+  snow,
   waterfall,
 }

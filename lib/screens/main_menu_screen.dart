@@ -86,52 +86,94 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
           () => Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  generalConfigController.gameBackgroundImage.value == '0'
-                      ? Assets.walterfallMenu
-                      : generalConfigController.gameBackgroundImage.value == '1'
-                          ? Assets.nebulaMenu
-                          : generalConfigController.gameBackgroundImage.value ==
-                                  '2'
-                              ? Assets.cityMenu
-                              : generalConfigController
-                                          .gameBackgroundImage.value ==
-                                      '3'
-                                  ? Assets.spaceMenu
-                                  : generalConfigController
-                                              .gameBackgroundImage.value ==
-                                          '4'
-                                      ? Assets.planetMenu
-                                      : Assets.village2Menu,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     image: AssetImage(
+            //  generalConfigController.gameBackgroundImage.value == '0'
+            //               ? Assets.cityMenu
+            //               : generalConfigController.gameBackgroundImage.value ==
+            //                       '1'
+            //                   ? Assets.desertMenu
+            //                   : generalConfigController
+            //                               .gameBackgroundImage.value ==
+            //                           '2'
+            //                       ? Assets.forestMenu
+            //                       : generalConfigController
+            //                                   .gameBackgroundImage.value ==
+            //                               '3'
+            //                           ? Assets.hellMenu
+            //                           : generalConfigController
+            //                                       .gameBackgroundImage.value ==
+            //                                   '4'
+            //                               ? Assets.iceMenu
+            //                               : generalConfigController
+            //                                           .gameBackgroundImage
+            //                                           .value ==
+            //                                       '5'
+            //                                   ? Assets.lavaMenu
+            //                                   : generalConfigController
+            //                                               .gameBackgroundImage
+            //                                               .value ==
+            //                                           '6'
+            //                                       ? Assets.mountainMenu
+            //                                       : generalConfigController
+            //                                                   .gameBackgroundImage
+            //                                                   .value ==
+            //                                               '7'
+            //                                           ? Assets.nebulaMenu
+            //                                           : generalConfigController
+            //                                                       .gameBackgroundImage
+            //                                                       .value ==
+            //                                                   '8'
+            //                                               ? Assets.snowMenu
+            //                                               : Assets.walterfallMenu,
+            //     ),
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Obx(
                   () => Image.asset(
                     generalConfigController.gameBackgroundImage.value == '0'
-                        ? Assets.walterfallMenu
+                        ? Assets.cityMenu
                         : generalConfigController.gameBackgroundImage.value ==
                                 '1'
-                            ? Assets.nebulaMenu
+                            ? Assets.desertMenu
                             : generalConfigController
                                         .gameBackgroundImage.value ==
                                     '2'
-                                ? Assets.cityMenu
+                                ? Assets.forestMenu
                                 : generalConfigController
                                             .gameBackgroundImage.value ==
                                         '3'
-                                    ? Assets.spaceMenu
+                                    ? Assets.hellMenu
                                     : generalConfigController
                                                 .gameBackgroundImage.value ==
                                             '4'
-                                        ? Assets.planetMenu
-                                        : Assets.village2Menu,
+                                        ? Assets.iceMenu
+                                        : generalConfigController
+                                                    .gameBackgroundImage
+                                                    .value ==
+                                                '5'
+                                            ? Assets.lavaMenu
+                                            : generalConfigController
+                                                        .gameBackgroundImage
+                                                        .value ==
+                                                    '6'
+                                                ? Assets.mountainMenu
+                                                : generalConfigController
+                                                            .gameBackgroundImage
+                                                            .value ==
+                                                        '7'
+                                                    ? Assets.nebulaMenu
+                                                    : generalConfigController
+                                                                .gameBackgroundImage
+                                                                .value ==
+                                                            '8'
+                                                        ? Assets.snowMenu
+                                                        : Assets.walterfallMenu,
                     height: generalConfigController.dheight.value,
                     width: generalConfigController.dwidth.value,
                     fit: BoxFit.cover,
@@ -289,11 +331,12 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                     height: 60,
                                   ),
                                   Text(
-                                    'Tap to start',
+                                    'Tap to Start',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 22,
                                       fontFamily: 'Marker',
-                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.5,
+                                      // fontWeight: FontWeight.bold,
                                       foreground: Paint()
                                         ..style = PaintingStyle.stroke
                                         ..strokeWidth = 2
@@ -302,7 +345,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                         const Shadow(
                                           offset: Offset(3, 3),
                                           blurRadius: 5.0,
-                                          color: Colors.grey,
+                                          color:
+                                              Color.fromARGB(255, 68, 68, 68),
                                         ),
                                         Shadow(
                                           offset: const Offset(3, 3),
@@ -313,11 +357,12 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                     ),
                                   ),
                                   const Text(
-                                    'Tap to start',
+                                    'Tap to Start',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 22,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.5,
+                                      // fontWeight: FontWeight.bold,
                                       fontFamily: 'Marker',
                                     ),
                                   ),
@@ -351,74 +396,53 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
                   top: MediaQuery.sizeOf(context).height / 2 * 0.25,
                   left: 20,
-                  child: Container(
-                    // padding:
-                    //     const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    // decoration: BoxDecoration(
-                    //   // color: Colors.blueAccent,
-                    //   color: Colors.indigoAccent,
-                    //   borderRadius: BorderRadius.circular(20),
-                    //   boxShadow: <BoxShadow>[
-                    //     BoxShadow(
-                    //       offset: const Offset(4, 4),
-                    //       blurRadius: 8.0,
-                    //       color: Styles.whiteColor.withOpacity(0.3),
-                    //     ),
-                    //     BoxShadow(
-                    //       offset: const Offset(4, 4),
-                    //       blurRadius: 8.0,
-                    //       color: Styles.blackColor.withOpacity(0.6),
-                    //     ),
-                    //   ],
-                    // ),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.highScore,
-                          height: 50,
-                        ),
-                        Obx(
-                          () => Text(
-                            'High Score : ${generalConfigController.gameHighScore.value}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Marker',
-                              height: 1.1,
-                              fontWeight: FontWeight.bold,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..strokeWidth = 1
-                                ..color = Styles.darkGreyColor,
-                              shadows: <Shadow>[
-                                const Shadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 5.0,
-                                  color: Colors.grey,
-                                ),
-                                Shadow(
-                                  offset: const Offset(2, 2),
-                                  blurRadius: 6.0,
-                                  color: Colors.black.withOpacity(0.8),
-                                ),
-                              ],
-                            ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.highScore,
+                        height: 50,
+                      ),
+                      Obx(
+                        () => Text(
+                          'High Score : ${generalConfigController.gameHighScore.value}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Marker',
+                            height: 1.1,
+                            fontWeight: FontWeight.bold,
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 1
+                              ..color = Styles.darkGreyColor,
+                            shadows: <Shadow>[
+                              const Shadow(
+                                offset: Offset(2, 2),
+                                blurRadius: 5.0,
+                                color: Colors.grey,
+                              ),
+                              Shadow(
+                                offset: const Offset(2, 2),
+                                blurRadius: 6.0,
+                                color: Colors.black.withOpacity(0.8),
+                              ),
+                            ],
                           ),
                         ),
-                        Obx(
-                          () => Text(
-                            'High Score : ${generalConfigController.gameHighScore.value}',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Marker',
-                              height: 1.1,
-                            ),
+                      ),
+                      Obx(
+                        () => Text(
+                          'High Score : ${generalConfigController.gameHighScore.value}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Marker',
+                            height: 1.1,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Align(
@@ -531,6 +555,70 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                           .isGameBackgroundChange.value = false;
                                     }
                                     seletectMap = index;
+                                  } else if (index == 6) {
+                                    generalConfigController
+                                        .gameBackgroundImage.value = '6';
+                                    await generalConfigController.setHiveData(
+                                      fieldName: DBFields.gameBackgroundImage,
+                                      data: '6',
+                                    );
+                                    if (index != seletectMap) {
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = true;
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 1000));
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = false;
+                                    }
+                                    seletectMap = index;
+                                  } else if (index == 7) {
+                                    generalConfigController
+                                        .gameBackgroundImage.value = '7';
+                                    await generalConfigController.setHiveData(
+                                      fieldName: DBFields.gameBackgroundImage,
+                                      data: '7',
+                                    );
+                                    if (index != seletectMap) {
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = true;
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 1000));
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = false;
+                                    }
+                                    seletectMap = index;
+                                  } else if (index == 8) {
+                                    generalConfigController
+                                        .gameBackgroundImage.value = '8';
+                                    await generalConfigController.setHiveData(
+                                      fieldName: DBFields.gameBackgroundImage,
+                                      data: '8',
+                                    );
+                                    if (index != seletectMap) {
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = true;
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 1000));
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = false;
+                                    }
+                                    seletectMap = index;
+                                  } else if (index == 9) {
+                                    generalConfigController
+                                        .gameBackgroundImage.value = '9';
+                                    await generalConfigController.setHiveData(
+                                      fieldName: DBFields.gameBackgroundImage,
+                                      data: '9',
+                                    );
+                                    if (index != seletectMap) {
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = true;
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 1000));
+                                      generalConfigController
+                                          .isGameBackgroundChange.value = false;
+                                    }
+                                    seletectMap = index;
                                   } else {
                                     generalConfigController
                                         .gameBackgroundImage.value = '0';
@@ -557,7 +645,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                 child: Padding(
                                   padding: EdgeInsets.only(
                                     left: 20,
-                                    right: index == 5 ? 20 : 0,
+                                    right: index == 9 ? 20 : 0,
                                   ),
                                   child: Stack(
                                     children: [
@@ -576,8 +664,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                                           .gameBackgroundImage
                                                           .value,
                                                     )
-                                                ? Styles.whiteColor
-                                                : Styles.lightCreamColor,
+                                                ? Colors.lime
+                                                : Styles.whiteColor,
                                             width: 3,
                                           ),
                                           borderRadius:
@@ -605,30 +693,29 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                               : null,
                                           image: DecorationImage(
                                             image: AssetImage(
-                                              // index == 0
-                                              //     ? 'assets/images/background_waterfall.png'
-                                              //     : index == 1
-                                              //         ? 'assets/images/background_forest.png'
-                                              //         : index == 2
-                                              //             ? 'assets/images/background_ruins.png'
-                                              //             : index == 3
-                                              //                 ? 'assets/images/background_temple.png'
-                                              //                 : index == 4
-                                              //                     ? 'assets/images/background_village.png'
-                                              //                     : 'assets/images/background_village2.png',
                                               index == 0
-                                                  ? Assets.walterfallMenu
+                                                  ? Assets.cityFrame
                                                   : index == 1
-                                                      ? Assets.nebulaMenu
+                                                      ? Assets.deserFrame
                                                       : index == 2
-                                                          ? Assets.cityMenu
+                                                          ? Assets.forestFrame
                                                           : index == 3
-                                                              ? Assets.spaceMenu
+                                                              ? Assets.hellFrame
                                                               : index == 4
                                                                   ? Assets
-                                                                      .planetMenu
-                                                                  : Assets
-                                                                      .galaxyMenu,
+                                                                      .iceFrame
+                                                                  : index == 5
+                                                                      ? Assets
+                                                                          .lavaFrame
+                                                                      : index ==
+                                                                              6
+                                                                          ? Assets
+                                                                              .mountainFrame
+                                                                          : index == 7
+                                                                              ? Assets.nebulaFrame
+                                                                              : index == 8
+                                                                                  ? Assets.snowFrame
+                                                                                  : Assets.walterfallFrame,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -647,10 +734,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                                             .gameBackgroundImage
                                                             .value,
                                                       )
-                                                  ? Styles.primaryGreenColor
+                                                  // ? Styles.primaryGreenColor
+                                                  //     .withOpacity(0.6)
+                                                  ? Styles.blackColor
                                                       .withOpacity(0.6)
-                                                  : Styles.blackColor
-                                                      .withOpacity(0.5),
+                                                  // : Styles.blackColor
+                                                  //     .withOpacity(0.5),
+                                                  : null,
                                               borderRadius:
                                                   const BorderRadius.only(
                                                 bottomLeft: Radius.circular(15),
@@ -660,22 +750,19 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                             ),
                                             child: Center(
                                               child: Text(
-                                                index == 0
-                                                    ? 'WaterFall'
-                                                    : index == 1
-                                                        ? 'Forest'
-                                                        : index == 2
-                                                            ? 'Ruins'
-                                                            : index == 3
-                                                                ? 'Temple'
-                                                                : index == 4
-                                                                    ? 'Village'
-                                                                    : 'Village 2',
+                                                index ==
+                                                        int.parse(
+                                                          generalConfigController
+                                                              .gameBackgroundImage
+                                                              .value,
+                                                        )
+                                                    ? "Selected"
+                                                    : "",
                                                 style: TextStyle(
                                                   fontSize: 16.0.sp,
                                                   color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
                                                   fontFamily: 'Marker',
+                                                  letterSpacing: 1.5,
                                                   height: 0.8,
                                                 ),
                                                 textAlign: TextAlign.center,
@@ -684,44 +771,20 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                           ),
                                         ),
                                       ),
-                                      // SvgPicture.asset(
-                                      //   Assets.frame,
-                                      //   height: generalConfigController
-                                      //           .dheight.value *
-                                      //       0.16,
-                                      //   width: generalConfigController
-                                      //           .dwidth.value *
-                                      //       0.26,
-                                      // ),
                                       Positioned(
-                                        top: 8,
-                                        right: 8,
+                                        top: 10,
+                                        right: 10,
                                         child: Container(
-                                          height: 20,
-                                          width: 20,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: index ==
-                                                    int.parse(
-                                                      generalConfigController
-                                                          .gameBackgroundImage
-                                                          .value,
-                                                    )
-                                                ? Styles.primaryGreenColor
-                                                : Styles.lightCreamColor,
-                                          ),
-                                          child: Icon(
-                                            Icons.check,
-                                            size: 20,
-                                            color: index ==
-                                                    int.parse(
-                                                      generalConfigController
-                                                          .gameBackgroundImage
-                                                          .value,
-                                                    )
-                                                ? Styles.whiteColor
-                                                : Styles.lightCreamColor,
-                                          ),
+                                          height: 28,
+                                          width: 28,
+                                          child: index ==
+                                                  int.parse(
+                                                    generalConfigController
+                                                        .gameBackgroundImage
+                                                        .value,
+                                                  )
+                                              ? SvgPicture.asset(Assets.check)
+                                              : const SizedBox.shrink(),
                                         ),
                                       ),
                                     ],
@@ -731,7 +794,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             ),
                           );
                         },
-                        itemCount: 6,
+                        itemCount: 10,
                       ),
                     ),
                   ),

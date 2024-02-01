@@ -14,22 +14,30 @@ class Background extends SpriteGroupComponent<BackgroundImage>
   Future<void> onLoad() async {
     print(
         "generalConfigController.backgroundImage.value ${generalConfigController.gameBackgroundImage.value}");
-    final forest = await gameRef.loadSprite(Assets.nebulaGameBg);
-    final ruins = await gameRef.loadSprite(Assets.cityGameBg);
-    final temple = await gameRef.loadSprite(Assets.spaceGameBg);
-    final village = await gameRef.loadSprite(Assets.planetGameBg);
-    final village2 = await gameRef.loadSprite(Assets.galaxyGameBg);
+    final city = await gameRef.loadSprite(Assets.cityGameBg);
+    final desert = await gameRef.loadSprite(Assets.desertGameBg);
+    final forest = await gameRef.loadSprite(Assets.forestGameBg);
+    final hell = await gameRef.loadSprite(Assets.hellGameBg);
+    final ice = await gameRef.loadSprite(Assets.iceGameBg);
+    final lava = await gameRef.loadSprite(Assets.lavaGameBg);
+    final nebula = await gameRef.loadSprite(Assets.nebulaGameBg);
+    final mountain = await gameRef.loadSprite(Assets.mountainGameBg);
+    final snow = await gameRef.loadSprite(Assets.snowGameBg);
     final waterfall = await gameRef.loadSprite(Assets.walterfallBg);
     // current = BackgroundImage.waterfall;
     current = await getBackground();
     // final background = await Flame.images.load(Assets.background1);
     size = gameRef.size;
     sprites = {
+      BackgroundImage.city: city,
+      BackgroundImage.desert: desert,
       BackgroundImage.forest: forest,
-      BackgroundImage.ruins: ruins,
-      BackgroundImage.temple: temple,
-      BackgroundImage.village: village,
-      BackgroundImage.village2: village2,
+      BackgroundImage.hell: hell,
+      BackgroundImage.ice: ice,
+      BackgroundImage.lava: lava,
+      BackgroundImage.mountain: mountain,
+      BackgroundImage.nebula: nebula,
+      BackgroundImage.snow: snow,
       BackgroundImage.waterfall: waterfall,
     };
     // sprite = Sprite(background);
@@ -37,43 +45,67 @@ class Background extends SpriteGroupComponent<BackgroundImage>
 
   Future<BackgroundImage?> getBackground() async {
     if (generalConfigController.gameBackgroundImage.value == '0') {
-      current = BackgroundImage.waterfall;
+      current = BackgroundImage.city;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '0',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '1') {
-      current = BackgroundImage.forest;
+      current = BackgroundImage.desert;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '1',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '2') {
-      current = BackgroundImage.ruins;
+      current = BackgroundImage.forest;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '2',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '3') {
-      current = BackgroundImage.temple;
+      current = BackgroundImage.hell;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '3',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '4') {
-      current = BackgroundImage.village;
+      current = BackgroundImage.ice;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '4',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '5') {
-      current = BackgroundImage.village2;
+      current = BackgroundImage.lava;
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '6') {
+      current = BackgroundImage.mountain;
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '7') {
+      current = BackgroundImage.nebula;
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '8') {
+      current = BackgroundImage.snow;
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '9') {
+      current = BackgroundImage.waterfall;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '5',
       );
     } else {
-      current = BackgroundImage.waterfall;
+      current = BackgroundImage.city;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '0',

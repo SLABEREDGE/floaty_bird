@@ -39,43 +39,67 @@ class Ground extends ParallaxComponent<FloatyBirdGame>
   Future<Image> getGround() async {
     log("generalConfigController.gameBackgroundImage.value ${generalConfigController.gameBackgroundImage.value}");
     if (generalConfigController.gameBackgroundImage.value == '0') {
-      ground = await Flame.images.load(Assets.waterFallGround);
+      ground = await Flame.images.load(Assets.cityGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '0',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '1') {
-      ground = await Flame.images.load(Assets.nebulaGround);
+      ground = await Flame.images.load(Assets.desertGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '1',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '2') {
-      ground = await Flame.images.load(Assets.cityGround);
+      ground = await Flame.images.load(Assets.forestGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '2',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '3') {
-      ground = await Flame.images.load(Assets.spaceGround);
+      ground = await Flame.images.load(Assets.hellGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '3',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '4') {
-      ground = await Flame.images.load(Assets.planetGround);
+      ground = await Flame.images.load(Assets.iceGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '4',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '5') {
-      ground = await Flame.images.load(Assets.galaxyGround);
+      ground = await Flame.images.load(Assets.lavaGround);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '6') {
+      ground = await Flame.images.load(Assets.mountainGround);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '7') {
+      ground = await Flame.images.load(Assets.nebulaGround);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '8') {
+      ground = await Flame.images.load(Assets.snowGround);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBackgroundImage,
+        data: '5',
+      );
+    } else if (generalConfigController.gameBackgroundImage.value == '9') {
+      ground = await Flame.images.load(Assets.waterFallGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '5',
       );
     } else {
-      ground = await Flame.images.load(Assets.waterFallGround);
+      ground = await Flame.images.load(Assets.cityGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
         data: '0',
