@@ -82,7 +82,6 @@ class Assets {
   static const flying = 'fly.wav';
   static const collision = 'collision.wav';
   static const point = 'point.wav';
-  static const homeSong1 = 'home_song_loop.wav';
-  static const homeSong2 = 'home_song_loop.mp3';
+  static const homeSong = 'home_song_loop.mp3';
   static const gamePlaySong = 'game_play_bg.mp3';
 }

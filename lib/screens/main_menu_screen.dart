@@ -68,7 +68,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
         log("widget.game.isBgPlaying ${widget.game.isBgPlaying}");
       } else {
         FlameAudio.bgm.play(
-          Assets.homeSong1,
+          Assets.homeSong,
         );
       }
     } else {
