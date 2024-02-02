@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/image_composition.dart';
 import 'package:flame/parallax.dart';
-
 import '../controller/general_config_controller.dart';
 import '../game/configuration.dart';
 import '../game/floaty_bird_game.dart';
@@ -78,25 +76,25 @@ class Ground extends ParallaxComponent<FloatyBirdGame>
       ground = await Flame.images.load(Assets.mountainGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '6',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '7') {
       ground = await Flame.images.load(Assets.nebulaGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '7',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '8') {
       ground = await Flame.images.load(Assets.snowGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '8',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '9') {
       ground = await Flame.images.load(Assets.waterFallGround);
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '9',
       );
     } else {
       ground = await Flame.images.load(Assets.cityGround);
@@ -105,6 +103,7 @@ class Ground extends ParallaxComponent<FloatyBirdGame>
         data: '0',
       );
     }
+    log("ground changed to ${generalConfigController.gameBackgroundImage.value}");
     return ground;
   }
 }

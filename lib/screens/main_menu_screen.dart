@@ -35,9 +35,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     generalConfigController.gameBackgroundImage.value =
         await generalConfigController.fetchHiveData(
             fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
+    generalConfigController.gameBirdImage.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
     widget.game.playSound = generalConfigController.isGameSoundOn.value;
+
+    _scrollToSelectedIndex();
   }
 
   @override
@@ -54,6 +58,18 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     );
 
     super.initState();
+  }
+
+  final ScrollController _controller = ScrollController();
+  void _scrollToSelectedIndex() {
+    double scrollTo =
+        int.parse(generalConfigController.gameBackgroundImage.value) *
+            ((generalConfigController.dwidth.value * 0.26) + 20);
+    _controller.animateTo(
+      scrollTo,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -277,28 +293,199 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Image.asset(
-                      Assets.bird,
-                      height: 100.0.h,
-                    )
-                        .animate(
-                          autoPlay: true,
-                          onPlay: (controller) => controller.repeat(
-                            reverse: true,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        BouncingWidget(
+                          child: GestureDetector(
+                            onTap: () async {
+                              if (generalConfigController.gameBirdImage.value ==
+                                  "0") {
+                                generalConfigController.gameBirdImage.value =
+                                    '5';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '5',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "1") {
+                                generalConfigController.gameBirdImage.value =
+                                    '0';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '0',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "2") {
+                                generalConfigController.gameBirdImage.value =
+                                    '1';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '1',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "3") {
+                                generalConfigController.gameBirdImage.value =
+                                    '2';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '2',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "4") {
+                                generalConfigController.gameBirdImage.value =
+                                    '3';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '3',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "5") {
+                                generalConfigController.gameBirdImage.value =
+                                    '4';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '4',
+                                );
+                              } else {
+                                generalConfigController.gameBirdImage.value =
+                                    '0';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '0',
+                                );
+                              }
+                              widget.game.bird.onLoad();
+                              widget.game.interval.reset();
+                            },
+                            child: SvgPicture.asset(
+                              Assets.back,
+                              height: 40,
+                            ),
                           ),
-                        )
-                        .scale(
-                          duration: 1300.ms,
-                          begin: const Offset(0.95, 0.95),
-                          end: const Offset(1, 1),
-                          curve: Curves.easeInOut,
                         ),
-                    // .moveY(
-                    //   duration: 1000.ms,
-                    //   begin: 0,
-                    //   end: 15,
-                    //   curve: Curves.easeInOut,
-                    // ),
+                        SizedBox(
+                          width: 40.0.w,
+                        ),
+                        Obx(
+                          () => Image.asset(
+                            generalConfigController.gameBirdImage.value == "0"
+                                ? Assets.bird0
+                                : generalConfigController.gameBirdImage.value ==
+                                        "1"
+                                    ? Assets.bird1
+                                    : generalConfigController
+                                                .gameBirdImage.value ==
+                                            "2"
+                                        ? Assets.bird2
+                                        : generalConfigController
+                                                    .gameBirdImage.value ==
+                                                "3"
+                                            ? Assets.bird3
+                                            : generalConfigController
+                                                        .gameBirdImage.value ==
+                                                    "4"
+                                                ? Assets.bird4
+                                                : Assets.bird5,
+                            height: 100.0.h,
+                          )
+                              .animate(
+                                autoPlay: true,
+                                onPlay: (controller) => controller.repeat(
+                                  reverse: true,
+                                ),
+                              )
+                              .scale(
+                                duration: 1300.ms,
+                                begin: const Offset(0.95, 0.95),
+                                end: const Offset(1, 1),
+                                curve: Curves.easeInOut,
+                              ),
+                        ),
+                        SizedBox(
+                          width: 40.0.w,
+                        ),
+                        BouncingWidget(
+                          child: GestureDetector(
+                            onTap: () async {
+                              if (generalConfigController.gameBirdImage.value ==
+                                  "0") {
+                                generalConfigController.gameBirdImage.value =
+                                    '1';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '1',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "1") {
+                                generalConfigController.gameBirdImage.value =
+                                    '2';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '2',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "2") {
+                                generalConfigController.gameBirdImage.value =
+                                    '3';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '3',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "3") {
+                                generalConfigController.gameBirdImage.value =
+                                    '4';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '4',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "4") {
+                                generalConfigController.gameBirdImage.value =
+                                    '5';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '5',
+                                );
+                              } else if (generalConfigController
+                                      .gameBirdImage.value ==
+                                  "5") {
+                                generalConfigController.gameBirdImage.value =
+                                    '0';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '0',
+                                );
+                              } else {
+                                generalConfigController.gameBirdImage.value =
+                                    '0';
+                                await generalConfigController.setHiveData(
+                                  fieldName: DBFields.gameBirdImage,
+                                  data: '0',
+                                );
+                              }
+                              widget.game.bird.onLoad();
+                              widget.game.interval.reset();
+                            },
+                            child: SvgPicture.asset(
+                              Assets.next,
+                              height: 40,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
                     const SizedBox(
                       height: 20,
                     ),
@@ -382,8 +569,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               end: const Offset(1, 1),
                               curve: Curves.easeInOut,
                             )
-                        : const CircularProgressIndicator(
-                            color: Styles.whiteColor,
+                        : const SizedBox(
+                            height: 60,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Styles.whiteColor,
+                              ),
+                            ),
                           ),
                     // const SizedBox(
                     //   height: 30,
@@ -454,6 +646,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
+                        controller: _controller,
                         itemBuilder: (context, index) {
                           return BouncingWidget(
                             child: Obx(
@@ -734,12 +927,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                                             .gameBackgroundImage
                                                             .value,
                                                       )
-                                                  // ? Styles.primaryGreenColor
-                                                  //     .withOpacity(0.6)
                                                   ? Styles.blackColor
-                                                      .withOpacity(0.6)
-                                                  // : Styles.blackColor
-                                                  //     .withOpacity(0.5),
                                                   : null,
                                               borderRadius:
                                                   const BorderRadius.only(
@@ -774,7 +962,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                       Positioned(
                                         top: 10,
                                         right: 10,
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 28,
                                           width: 28,
                                           child: index ==

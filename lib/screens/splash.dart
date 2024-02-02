@@ -43,6 +43,8 @@ class _SplashState extends State<Splash> {
             fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
+    generalConfigController.gameBirdImage.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
     game.playSound = generalConfigController.isGameSoundOn.value;
     generalConfigController.loadRewardedAd(
         adUnitId: Platform.isAndroid

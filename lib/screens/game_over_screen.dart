@@ -1,11 +1,9 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -13,7 +11,6 @@ import '../componets/setting_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/bouncing_widget.dart';
-import '../utils/common_methods.dart';
 
 class GameOverScreen extends StatelessWidget {
   final FloatyBirdGame game;
@@ -237,6 +234,7 @@ class GameOverScreen extends StatelessWidget {
     game.overlays.add('mainMenu');
     game.bird.resetBird();
     game.bird.resetScore();
+    game.interval.reset();
     if (generalConfigController.isGameSoundOn.value) {
       game.isBgPlaying = true;
     }

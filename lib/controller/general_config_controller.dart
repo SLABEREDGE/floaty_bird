@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 
-import '../componets/resume_countdown_widget.dart';
 import '../game/floaty_bird_game.dart';
 
 class GeneralConfigController extends GetxController {
@@ -42,6 +41,7 @@ class GeneralConfigController extends GetxController {
   RxBool onSelectGame = false.obs;
   RxString gameHighScore = "0".obs;
   RxString gameBackgroundImage = "0".obs;
+  RxString gameBirdImage = "0".obs;
   RxBool isGameBackgroundChange = false.obs;
   RxBool isGameSoundOn = false.obs;
   RxBool isGameSplashAnimating = false.obs;

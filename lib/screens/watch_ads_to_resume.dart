@@ -1,11 +1,9 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:floaty_bird/utils/bouncing_widget.dart';
-import 'package:floaty_bird/utils/common_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';

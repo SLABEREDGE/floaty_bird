@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -9,6 +11,7 @@ import '../game/bird_movement.dart';
 import '../game/configuration.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/assets.dart';
+import '../utils/constants.dart';
 
 class Bird extends SpriteGroupComponent<BirdMovement>
     with HasGameRef<FloatyBirdGame>, CollisionCallbacks {
@@ -16,11 +19,15 @@ class Bird extends SpriteGroupComponent<BirdMovement>
 
   int score = 0;
 
+  late Sprite birdMidFlap;
+  late Sprite birdUpFlap;
+  late Sprite birdDownFlap;
+
   @override
   Future<void> onLoad() async {
-    final birdMidFlap = await gameRef.loadSprite(Assets.birdMidFlap);
-    final birdUpFlap = await gameRef.loadSprite(Assets.birdUpFlap);
-    final birdDownFlap = await gameRef.loadSprite(Assets.birdDownFlap);
+    birdMidFlap = await getMidBird();
+    birdUpFlap = await getUpBird();
+    birdDownFlap = await getDownBird();
 
     size = Vector2(50, 40);
     position = Vector2(50, gameRef.size.y / 2 - size.y / 2);
@@ -73,7 +80,9 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     gameRef.pauseEngine();
     if (!generalConfigController.userResumedUsingAds.value) {
       gameRef.overlays.add('WatchAdsToResume');
-      FlameAudio.bgm.play(Assets.homeSong);
+      if (generalConfigController.isGameSoundOn.value) {
+        FlameAudio.bgm.play(Assets.homeSong);
+      }
     } else {
       gameRef.overlays.add('gameOver');
     }
@@ -87,5 +96,137 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     if (position.y < 1) {
       gameOver();
     }
+  }
+
+  Future<Sprite> getMidBird() async {
+    log("getMidBird is ${generalConfigController.gameBirdImage.value}");
+    if (generalConfigController.gameBirdImage.value == '0') {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird0MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '0',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '1') {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird1MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '1',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '2') {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird2MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '2',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '3') {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird3MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '3',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '4') {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird4MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '4',
+      );
+    } else {
+      birdMidFlap = await gameRef.loadSprite(Assets.bird5MidFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '5',
+      );
+    }
+
+    log("getMidBird changed to ${generalConfigController.gameBirdImage.value}");
+    return birdMidFlap;
+  }
+
+  Future<Sprite> getUpBird() async {
+    log("getUpBird is ${generalConfigController.gameBirdImage.value}");
+    if (generalConfigController.gameBirdImage.value == '0') {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird0UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '0',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '1') {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird1UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '1',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '2') {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird2UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '2',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '3') {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird3UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '3',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '4') {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird4UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '4',
+      );
+    } else {
+      birdUpFlap = await gameRef.loadSprite(Assets.bird5UpFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '5',
+      );
+    }
+
+    log("getUpBird changed to ${generalConfigController.gameBirdImage.value}");
+    return birdUpFlap;
+  }
+
+  Future<Sprite> getDownBird() async {
+    log("getDownBird is ${generalConfigController.gameBirdImage.value}");
+
+    if (generalConfigController.gameBirdImage.value == '0') {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird0DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '0',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '1') {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird1DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '1',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '2') {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird2DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '2',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '3') {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird3DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '3',
+      );
+    } else if (generalConfigController.gameBirdImage.value == '4') {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird4DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '4',
+      );
+    } else {
+      birdDownFlap = await gameRef.loadSprite(Assets.bird5DownFlap);
+      await generalConfigController.setHiveData(
+        fieldName: DBFields.gameBirdImage,
+        data: '5',
+      );
+    }
+    log("getDownBird changed to ${generalConfigController.gameBirdImage.value}");
+    return birdDownFlap;
   }
 }

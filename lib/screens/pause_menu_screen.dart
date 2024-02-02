@@ -155,6 +155,7 @@ class PauseMenuScreen extends StatelessWidget {
     game.overlays.remove('pauseMenuScreen');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
+    game.interval.reset();
     game.isBgPlaying = false;
     game.pauseEngine();
   }

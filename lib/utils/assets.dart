@@ -53,10 +53,36 @@ class Assets {
   static const walterfallFrame = 'assets/images/waterfall_map_frame.png';
 
   //game bird
-  static const birdMidFlap = 'bird_midflap.png';
-  static const birdUpFlap = 'bird_upflap.png';
-  static const birdDownFlap = 'bird_downflap.png';
-  static const bird = 'assets/images/bird_upflap.png';
+  static const bird0MidFlap = 'bird_1_mid.png';
+  static const bird0UpFlap = 'bird_1_up.png';
+  static const bird0DownFlap = 'bird_1_down.png';
+
+  static const bird1MidFlap = 'bird_2_mid.png';
+  static const bird1UpFlap = 'bird_2_up.png';
+  static const bird1DownFlap = 'bird_2_down.png';
+
+  static const bird2MidFlap = 'bird_3_up.png';
+  static const bird2UpFlap = 'bird_3_up.png';
+  static const bird2DownFlap = 'bird_3_down.png';
+
+  static const bird3MidFlap = 'bird_4_up.png';
+  static const bird3UpFlap = 'bird_4_up.png';
+  static const bird3DownFlap = 'bird_4_down.png';
+
+  static const bird4MidFlap = 'bird_5_up.png';
+  static const bird4UpFlap = 'bird_5_up.png';
+  static const bird4DownFlap = 'bird_5_down.png';
+
+  static const bird5MidFlap = 'bird_6_up.png';
+  static const bird5UpFlap = 'bird_6_up.png';
+  static const bird5DownFlap = 'bird_6_down.png';
+
+  static const bird0 = 'assets/images/bird_1_up.png';
+  static const bird1 = 'assets/images/bird_2_up.png';
+  static const bird2 = 'assets/images/bird_3_up.png';
+  static const bird3 = 'assets/images/bird_4_up.png';
+  static const bird4 = 'assets/images/bird_5_up.png';
+  static const bird5 = 'assets/images/bird_6_up.png';
 
   static const gameOver = 'assets/images/gameover.png';
   static const splash = 'assets/images/splash.png';
@@ -77,6 +103,8 @@ class Assets {
   static const soundOnButton = 'assets/icons/Sound_button.svg';
   static const soundOffButton = 'assets/icons/Sound_Close_Button.svg';
   static const check = 'assets/icons/check.svg';
+  static const next = 'assets/icons/next.svg';
+  static const back = 'assets/icons/back.svg';
 
   //audio
   static const flying = 'fly.wav';

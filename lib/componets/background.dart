@@ -84,25 +84,25 @@ class Background extends SpriteGroupComponent<BackgroundImage>
       current = BackgroundImage.mountain;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '6',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '7') {
       current = BackgroundImage.nebula;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '7',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '8') {
       current = BackgroundImage.snow;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '8',
       );
     } else if (generalConfigController.gameBackgroundImage.value == '9') {
       current = BackgroundImage.waterfall;
       await generalConfigController.setHiveData(
         fieldName: DBFields.gameBackgroundImage,
-        data: '5',
+        data: '9',
       );
     } else {
       current = BackgroundImage.city;
