@@ -81,8 +81,8 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
     game.playSound = generalConfigController.isGameSoundOn.value;
     generalConfigController.loadRewardedAd(
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-7487124206061387/4696479208'
-          // 'ca-app-pub-7487124206061387/4696479208' //test
+          ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
+          // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
           : '',
       game: game,
     );

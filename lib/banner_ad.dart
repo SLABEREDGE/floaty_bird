@@ -14,7 +14,7 @@ class MyBannerAdWidget extends StatefulWidget {
 
   const MyBannerAdWidget({
     super.key,
-    this.adSize = AdSize.fullBanner,
+    this.adSize = AdSize.banner,
     this.adUnitId,
     required this.game,
   });
