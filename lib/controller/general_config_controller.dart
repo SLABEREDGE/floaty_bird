@@ -116,6 +116,7 @@ class GeneralConfigController extends GetxController {
                   await Future.delayed(const Duration(milliseconds: 4500));
                   log("removed4");
                   game.resumeEngine();
+                  game.pipes.update(0);
                   log("removed5");
                   game.bird.resetBird();
                   log("removed6");

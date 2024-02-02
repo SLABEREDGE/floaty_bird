@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'game/floaty_bird_game.dart';
@@ -10,23 +9,13 @@ import 'game/floaty_bird_game.dart';
 class MyBannerAdWidget extends StatefulWidget {
   static const String id = 'bannerAd';
   final FloatyBirdGame game;
-
-  /// The requested size of the banner. Defaults to [AdSize.banner].
   final AdSize adSize;
+  final String? adUnitId;
 
-  /// The AdMob ad unit to show.
-  ///
-  /// TODO: replace this test ad unit with your own ad unit
-  final String adUnitId = Platform.isAndroid
-      // Use this ad unit on Android...
-      // ? 'ca-app-pub-7487124206061387/9927790439'
-      ? 'ca-app-pub-3940256099942544/6300978111'
-      // ... or this one on iOS.
-      : '';
-
-  MyBannerAdWidget({
+  const MyBannerAdWidget({
     super.key,
-    this.adSize = AdSize.banner,
+    this.adSize = AdSize.fullBanner,
+    this.adUnitId,
     required this.game,
   });
 
@@ -50,9 +39,9 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
             height: widget.adSize.height.toDouble(),
             child: _bannerAd == null
                 // Nothing to render yet.
-                ? SizedBox()
+                ? const SizedBox.shrink()
                 // The actual ad.
-                : AdWidget(ad: _bannerAd!),
+                : Center(child: AdWidget(ad: _bannerAd!)),
           ),
         ],
       ),
@@ -75,7 +64,12 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
   Future<void> _loadAd() async {
     final bannerAd = BannerAd(
       size: widget.adSize,
-      adUnitId: widget.adUnitId,
+      adUnitId: widget.adUnitId ??
+          (Platform.isAndroid
+              // ? 'ca-app-pub-7487124206061387/2026325080' //AdSize.fullBanner,
+              // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
+              ? 'ca-app-pub-3940256099942544/6300978111' // AdSize.banner,
+              : ''),
       request: const AdRequest(),
       listener: BannerAdListener(
         // Called when an ad is successfully received.
@@ -93,6 +87,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
         onAdFailedToLoad: (ad, error) {
           log('BannerAd failed to load: $error');
           ad.dispose();
+          // _loadAd();
         },
       ),
     );

@@ -219,6 +219,7 @@ class GameOverScreen extends StatelessWidget {
     }
     generalConfigController.userResumedUsingAds.value = false;
     game.overlays.remove('gameOver');
+    game.pipes.update(0);
     game.resumeEngine();
     game.bird.resetBird();
     game.bird.resetScore();
@@ -234,6 +235,7 @@ class GameOverScreen extends StatelessWidget {
     game.overlays.remove('gameOver');
     game.overlays.remove('pauseMenuButton');
     game.overlays.add('mainMenu');
+    game.pipes.update(0);
     game.bird.resetBird();
     game.bird.resetScore();
     game.interval.reset();

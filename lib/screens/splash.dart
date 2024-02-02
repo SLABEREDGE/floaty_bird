@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/componets/resume_countdown_widget.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/extension.dart';
@@ -26,13 +28,44 @@ class Splash extends StatefulWidget {
   State<Splash> createState() => _SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashState extends State<Splash> with WidgetsBindingObserver {
   final game = FloatyBirdGame();
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     fetchData();
     fetchData2();
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        if (generalConfigController.isGameSoundOn.value) {
+          FlameAudio.bgm.resume();
+        }
+        log("RESUMED ====>");
+        break;
+      case AppLifecycleState.inactive:
+        log("INACTIVE ====>");
+        break;
+      case AppLifecycleState.paused:
+        if (generalConfigController.isGameSoundOn.value) {
+          FlameAudio.bgm.pause();
+        }
+        log("PAUSED ====>");
+        break;
+      case AppLifecycleState.detached:
+        if (generalConfigController.isGameSoundOn.value) {
+          FlameAudio.bgm.pause();
+        }
+        log("DETACHED ====>");
+        break;
+      case AppLifecycleState.hidden:
+        print("hidden");
+        break;
+    }
   }
 
   Future<void> fetchData2() async {
@@ -73,6 +106,7 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 600));
     game.playSound = await generalConfigController.fetchHiveData(
         fieldName: DBFields.gameSoundOn, defaultValue: true);
+
     await Get.offAll(
       () => GameWidget(
         game: game,

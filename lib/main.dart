@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

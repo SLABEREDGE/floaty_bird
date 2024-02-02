@@ -583,10 +583,16 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   ],
                 ),
                 SettingsMenuButton(game: widget.game),
-                MyBannerAdWidget(game: widget.game),
+                MyBannerAdWidget(
+                  game: widget.game,
+                  adUnitId: (Platform.isAndroid
+                      // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
+                      ? 'ca-app-pub-3940256099942544/6300978111' // AdSize.banner,
+                      : ''),
+                ),
                 Positioned(
                   // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
-                  top: MediaQuery.sizeOf(context).height / 2 * 0.25,
+                  top: MediaQuery.sizeOf(context).height / 2 * 0.26,
                   left: 20,
                   child: Stack(
                     alignment: Alignment.center,

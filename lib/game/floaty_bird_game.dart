@@ -17,6 +17,7 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   late Background background;
   late Ground ground;
   late TextComponent score;
+  late PipeGroup pipes;
   Timer interval = Timer(Config.pipeInterval, repeat: true);
   bool isHit = false;
   bool isRewarded = false;
@@ -31,7 +32,7 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
       bird = Bird(),
       score = buildScore(),
     ]);
-    interval.onTick = () => add(PipeGroup());
+    interval.onTick = () => add(pipes = PipeGroup());
   }
 
   TextComponent buildScore() {

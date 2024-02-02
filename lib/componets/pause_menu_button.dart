@@ -14,7 +14,7 @@ class PauseMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       // top: MediaQuery.sizeOf(context).height / 2 * 0.15,
-      top: MediaQuery.sizeOf(context).height / 2 * 0.25,
+      top: MediaQuery.sizeOf(context).height / 2 * 0.26,
       left: 20,
       child: GestureDetector(
         onTap: () {
