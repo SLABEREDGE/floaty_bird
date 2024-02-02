@@ -214,7 +214,9 @@ class GameOverScreen extends StatelessWidget {
   }
 
   void onRestart() {
-    FlameAudio.bgm.stop();
+    if (generalConfigController.isGameSoundOn.value) {
+      FlameAudio.bgm.stop();
+    }
     generalConfigController.userResumedUsingAds.value = false;
     game.overlays.remove('gameOver');
     game.resumeEngine();
@@ -246,15 +248,6 @@ class GameOverScreen extends StatelessWidget {
     if (generalConfigController.isGameSoundOn.value) {
       FlameAudio.bgm.pause();
     }
-    // showLoader();
-    // await generalConfigController.loadRewardedAd(
-    //     adUnitId: Platform.isAndroid
-    //         ?
-    //         // 'ca-app-pub-3940256099942544/5354046379'
-    //         'ca-app-pub-7487124206061387/4696479208'
-    //         : '',
-    //     game: game);
-
     if (generalConfigController.rewardedAd != null) {
       generalConfigController.rewardedAd!.show(
           onUserEarnedReward: (AdWithoutView ad, RewardItem reward) async {
@@ -263,7 +256,5 @@ class GameOverScreen extends StatelessWidget {
     } else {
       log("Adddddddssss is nullllll =====>");
     }
-
-    // game.overlays.add('WatchAdsToResume');
   }
 }

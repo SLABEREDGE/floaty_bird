@@ -1,3 +1,4 @@
+import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:flame/components.dart';
@@ -27,6 +28,9 @@ class PipeGroup extends PositionComponent with HasGameRef<FloatyBirdGame> {
     final centerY =
         spacing + _random.nextDouble() * (heightMinusGround - spacing);
 
+    dev.log("PipePosition top ==== > ${(centerY - spacing / 2)}");
+    dev.log(
+        "PipePosition bottom ==== > ${(heightMinusGround - (centerY + spacing / 2))}");
     addAll([
       Pipe(height: centerY - spacing / 2, pipePosition: PipePosition.top),
       Pipe(
@@ -45,7 +49,17 @@ class PipeGroup extends PositionComponent with HasGameRef<FloatyBirdGame> {
     }
     if (gameRef.isHit) {
       removeFromParent();
+      removeFromParent();
+      removeFromParent();
+      dev.log("gameRef.isHit ====> true");
       gameRef.isHit = false;
+    }
+    if (gameRef.isRewarded) {
+      removeFromParent();
+      removeFromParent();
+      removeFromParent();
+      dev.log("gameRef.isRewarded ====> true");
+      gameRef.isRewarded = false;
     }
   }
 

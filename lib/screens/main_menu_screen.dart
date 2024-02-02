@@ -79,7 +79,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.game.playSound) {
+    if (widget.game.playSound && generalConfigController.isGameSoundOn.value) {
       if (widget.game.isBgPlaying) {
         log("widget.game.isBgPlaying ${widget.game.isBgPlaying}");
       } else {

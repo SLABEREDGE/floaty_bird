@@ -102,6 +102,7 @@ class GeneralConfigController extends GetxController {
               onAdDismissedFullScreenContent: (RewardedAd ad) async {
                 log('$ad onAdDismissedFullScreenContent.');
                 if (userEarnedReward.value) {
+                  game.isRewarded = true;
                   game.overlays.remove('rewardAd');
                   log("removed1");
                   game.overlays.remove('WatchAdsToResume');
@@ -122,6 +123,7 @@ class GeneralConfigController extends GetxController {
                   userEarnedReward.value = false;
                 } else {
                   generalConfigController.userResumedUsingAds.value = true;
+                  game.isRewarded = false;
                   game.overlays.remove('rewardAd');
                   log("removed1");
                   game.overlays.remove('WatchAdsToResume');
