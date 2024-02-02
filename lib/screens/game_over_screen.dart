@@ -40,6 +40,7 @@ class GameOverScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         fontFamily: 'Game',
+                        letterSpacing: 1.5,
                         foreground: Paint()
                           ..style = PaintingStyle.stroke
                           ..strokeWidth = 10
@@ -63,6 +64,7 @@ class GameOverScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         fontFamily: 'Game',
+                        letterSpacing: 1.5,
                         foreground: Paint()
                           ..style = PaintingStyle.stroke
                           ..strokeWidth = 5
@@ -85,6 +87,7 @@ class GameOverScreen extends StatelessWidget {
                       'Game Over',
                       style: TextStyle(
                         fontSize: 60,
+                        letterSpacing: 1.5,
                         color: Colors.orange,
                         fontFamily: 'Game',
                       ),
@@ -105,6 +108,7 @@ class GameOverScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 50,
                           fontFamily: 'Game',
+                          letterSpacing: 1.4,
                           foreground: Paint()
                             ..style = PaintingStyle.stroke
                             ..strokeWidth = 3
@@ -131,9 +135,11 @@ class GameOverScreen extends StatelessWidget {
                             ? 'New HighScore : ${game.bird.score}'
                             : 'Score: ${game.bird.score}',
                         style: const TextStyle(
-                            fontSize: 50,
-                            color: Colors.white,
-                            fontFamily: 'Game'),
+                          fontSize: 50,
+                          color: Colors.white,
+                          fontFamily: 'Game',
+                          letterSpacing: 1.4,
+                        ),
                       ),
                     ),
                   ],
@@ -153,11 +159,13 @@ class GameOverScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'watch Ad to resume',
+                              'Watch ad to resume',
                               style: TextStyle(
-                                  fontSize: 20,
-                                  height: 1.2,
-                                  fontFamily: 'Game'),
+                                fontSize: 25,
+                                height: 1.2,
+                                letterSpacing: 1.3,
+                                fontFamily: 'Game',
+                              ),
                             ),
                             SizedBox(
                               width: 10,
@@ -177,8 +185,9 @@ class GameOverScreen extends StatelessWidget {
                     child: const Text(
                       'Play Again ?',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 25,
                         height: 1.2,
+                        letterSpacing: 1.3,
                         fontFamily: 'Game',
                       ),
                     ),
@@ -195,7 +204,11 @@ class GameOverScreen extends StatelessWidget {
                         Text(
                           'Home',
                           style: TextStyle(
-                              fontSize: 25, height: 1.2, fontFamily: 'Game'),
+                            fontSize: 25,
+                            height: 1.2,
+                            fontFamily: 'Game',
+                            letterSpacing: 1.3,
+                          ),
                         ),
                         SizedBox(
                           width: 10,
@@ -214,9 +227,9 @@ class GameOverScreen extends StatelessWidget {
   }
 
   void onRestart() {
-    if (generalConfigController.isGameSoundOn.value) {
-      FlameAudio.bgm.stop();
-    }
+    // if (generalConfigController.isGameSoundOn.value) {
+    //   FlameAudio.bgm.stop();
+    // }
     generalConfigController.userResumedUsingAds.value = false;
     game.overlays.remove('gameOver');
     game.pipes.update(0);

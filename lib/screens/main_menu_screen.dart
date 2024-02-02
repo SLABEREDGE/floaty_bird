@@ -213,6 +213,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           style: TextStyle(
                             fontSize: 65,
                             fontFamily: 'Game',
+                            letterSpacing: 1.5,
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
                               ..strokeWidth = 3
@@ -235,6 +236,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           'Flappy Bird',
                           style: TextStyle(
                             fontSize: 65,
+                            letterSpacing: 1.5,
                             color: Colors.white,
                             fontFamily: 'Game',
                           ),
@@ -251,6 +253,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           style: TextStyle(
                             fontSize: 50,
                             fontFamily: 'Game',
+                            letterSpacing: 1.5,
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
                               ..strokeWidth = 8
@@ -273,6 +276,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           'Get Ready',
                           style: TextStyle(
                             fontSize: 50,
+                            letterSpacing: 1.5,
                             fontFamily: 'Game',
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
@@ -284,6 +288,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           'Get Ready',
                           style: TextStyle(
                             fontSize: 50,
+                            letterSpacing: 1.5,
                             color: Colors.orange,
                             fontFamily: 'Game',
                           ),
@@ -493,9 +498,9 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             false)
                         ? GestureDetector(
                             onTap: () async {
-                              if (generalConfigController.isGameSoundOn.value) {
-                                FlameAudio.bgm.pause();
-                              }
+                              // if (generalConfigController.isGameSoundOn.value) {
+                              //   FlameAudio.bgm.pause();
+                              // }
                               widget.game.overlays.remove('mainMenu');
                               widget.game.overlays.add("bannerAd");
                               widget.game.overlays.add('pauseMenuButton');
@@ -586,8 +591,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 MyBannerAdWidget(
                   game: widget.game,
                   adUnitId: (Platform.isAndroid
-                      // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
-                      ? 'ca-app-pub-3940256099942544/6300978111' // AdSize.banner,
+                      ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
+                      // ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
                       : ''),
                 ),
                 Positioned(

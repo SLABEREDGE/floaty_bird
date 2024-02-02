@@ -36,6 +36,7 @@ class PauseMenuScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         fontFamily: 'Game',
+                        letterSpacing: 1.5,
                         foreground: Paint()
                           ..style = PaintingStyle.stroke
                           ..strokeWidth = 10
@@ -59,6 +60,7 @@ class PauseMenuScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         fontFamily: 'Game',
+                        letterSpacing: 1.5,
                         foreground: Paint()
                           ..style = PaintingStyle.stroke
                           ..strokeWidth = 5
@@ -82,6 +84,7 @@ class PauseMenuScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         color: Colors.indigoAccent,
+                        letterSpacing: 1.5,
                         fontFamily: 'Game',
                       ),
                     ),
@@ -102,7 +105,11 @@ class PauseMenuScreen extends StatelessWidget {
                         Text(
                           'Resume',
                           style: TextStyle(
-                              fontSize: 25, height: 1.2, fontFamily: 'Game'),
+                            fontSize: 25,
+                            height: 1.2,
+                            fontFamily: 'Game',
+                            letterSpacing: 1.3,
+                          ),
                         ),
                         SizedBox(
                           width: 10,
@@ -123,7 +130,11 @@ class PauseMenuScreen extends StatelessWidget {
                         Text(
                           'Home',
                           style: TextStyle(
-                              fontSize: 25, height: 1.2, fontFamily: 'Game'),
+                            fontSize: 25,
+                            height: 1.2,
+                            fontFamily: 'Game',
+                            letterSpacing: 1.3,
+                          ),
                         ),
                         SizedBox(
                           width: 10,

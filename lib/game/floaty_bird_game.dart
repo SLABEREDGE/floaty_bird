@@ -39,13 +39,14 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     return TextComponent(
       text: 'Score: 0',
       // position: Vector2(size.x / 2, size.y / 2 * 0.2),
-      position: Vector2(size.x / 2, size.y * 0.15),
+      position: Vector2(size.x / 2, size.y * 0.155),
       anchor: Anchor.center,
       textRenderer: TextPaint(
         style: const TextStyle(
           fontSize: 40,
           color: Styles.whiteColor,
           fontWeight: FontWeight.bold,
+          letterSpacing: 1.5,
           fontFamily: 'Game',
           shadows: <Shadow>[
             Shadow(

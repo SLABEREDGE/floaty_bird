@@ -53,7 +53,7 @@ class Assets {
   static const walterfallFrame = 'assets/images/waterfall_map_frame.png';
 
   //game bird
-  static const bird0MidFlap = 'bird_1_mid.png';
+  static const bird0MidFlap = 'bird_1_up.png';
   static const bird0UpFlap = 'bird_1_up.png';
   static const bird0DownFlap = 'bird_1_down.png';
 
@@ -69,7 +69,7 @@ class Assets {
   static const bird3UpFlap = 'bird_4_up.png';
   static const bird3DownFlap = 'bird_4_down.png';
 
-  static const bird4MidFlap = 'bird_5_up.png';
+  static const bird4MidFlap = 'bird_5_mid.png';
   static const bird4UpFlap = 'bird_5_up.png';
   static const bird4DownFlap = 'bird_5_down.png';
 

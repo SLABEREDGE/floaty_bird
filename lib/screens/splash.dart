@@ -80,12 +80,12 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
         .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
     game.playSound = generalConfigController.isGameSoundOn.value;
     generalConfigController.loadRewardedAd(
-        adUnitId: Platform.isAndroid
-            ?
-            // 'ca-app-pub-3940256099942544/5354046379'
-            'ca-app-pub-7487124206061387/4696479208'
-            : '',
-        game: game);
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-7487124206061387/4696479208'
+          // 'ca-app-pub-7487124206061387/4696479208' //test
+          : '',
+      game: game,
+    );
   }
 
   Future<void> fetchData() async {
@@ -162,6 +162,7 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                       color: Colors.orangeAccent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Game',
+                      letterSpacing: 1.5,
                       // shadows: <Shadow>[
                       //   Shadow(
                       //     offset: Offset(5, 5),
@@ -251,6 +252,7 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                       color: Colors.transparent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Game',
+                      letterSpacing: 1.5,
                     ),
                   )
                 ],

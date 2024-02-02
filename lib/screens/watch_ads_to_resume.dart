@@ -99,14 +99,6 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                         } else {
                           log("Adddddddssss is nullllll =====>");
                         }
-                        // showLoader();
-                        // await generalConfigController.loadRewardedAd(
-                        //     adUnitId: Platform.isAndroid
-                        //         ?
-                        //         // 'ca-app-pub-3940256099942544/5354046379'
-                        //         'ca-app-pub-7487124206061387/4696479208'
-                        //         : '',
-                        //     game: widget.game);
                       },
                       child: BouncingWidget(
                         child: Stack(

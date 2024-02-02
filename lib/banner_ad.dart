@@ -66,9 +66,8 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
       size: widget.adSize,
       adUnitId: widget.adUnitId ??
           (Platform.isAndroid
-              // ? 'ca-app-pub-7487124206061387/2026325080' //AdSize.fullBanner,
-              // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
-              ? 'ca-app-pub-3940256099942544/6300978111' // AdSize.banner,
+              ? 'ca-app-pub-7487124206061387/2026325080' //AdSize.fullBanner,
+              // ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
               : ''),
       request: const AdRequest(),
       listener: BannerAdListener(
