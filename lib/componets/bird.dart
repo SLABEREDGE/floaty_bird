@@ -80,7 +80,11 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     game.isHit = true;
     gameRef.pauseEngine();
     if (!generalConfigController.userResumedUsingAds.value) {
-      gameRef.overlays.add('WatchAdsToResume');
+      if (generalConfigController.rewardedAd != null) {
+        gameRef.overlays.add('WatchAdsToResume');
+      } else {
+        gameRef.overlays.add('gameOver');
+      }
       if (generalConfigController.isGameSoundOn.value) {
         // FlameAudio.bgm.play(Assets.homeSong);
       }

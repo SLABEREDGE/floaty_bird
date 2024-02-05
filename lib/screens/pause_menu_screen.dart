@@ -1,5 +1,6 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
+import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -34,7 +35,7 @@ class PauseMenuScreen extends StatelessWidget {
                     Text(
                       'Game Pause',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         fontFamily: 'Game',
                         letterSpacing: 1.5,
                         foreground: Paint()
@@ -58,7 +59,7 @@ class PauseMenuScreen extends StatelessWidget {
                     Text(
                       'Game Pause',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         fontFamily: 'Game',
                         letterSpacing: 1.5,
                         foreground: Paint()
@@ -79,10 +80,10 @@ class PauseMenuScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Text(
+                    Text(
                       'Game Pause',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         color: Colors.indigoAccent,
                         letterSpacing: 1.5,
                         fontFamily: 'Game',
@@ -99,22 +100,22 @@ class PauseMenuScreen extends StatelessWidget {
                     onPressed: onRestart,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.deepOrangeAccent, elevation: 5),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           'Resume',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 25.0.sp,
                             height: 1.2,
                             fontFamily: 'Game',
                             letterSpacing: 1.3,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Icon(Icons.play_arrow),
+                        const Icon(Icons.play_arrow),
                       ],
                     ),
                   ),
@@ -124,22 +125,22 @@ class PauseMenuScreen extends StatelessWidget {
                     onPressed: onHome,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent, elevation: 5),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           'Home',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 25.0.sp,
                             height: 1.2,
                             fontFamily: 'Game',
                             letterSpacing: 1.3,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Icon(Icons.home),
+                        const Icon(Icons.home),
                       ],
                     ),
                   ),

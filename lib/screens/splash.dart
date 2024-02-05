@@ -6,6 +6,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/componets/resume_countdown_widget.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,7 +16,9 @@ import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/assets.dart';
+import '../utils/common_methods.dart';
 import '../utils/constants.dart';
+import '../utils/internet_service.dart';
 import 'game_over_screen.dart';
 import 'main_menu_screen.dart';
 import 'pause_menu_screen.dart';
@@ -33,9 +36,57 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    fetchData();
     fetchData2();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await checkInternet();
+    });
     super.initState();
+  }
+
+  Future<void> checkInternet() async {
+    if (await InternetService.instance.checkInternet()) {
+      await Future.delayed(const Duration(milliseconds: 4250));
+      fetchData();
+    } else {
+      await showDialogWithMessage(
+          message:
+              "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
+          firstButtonText: "Try Again",
+          secondButtonText: "Proceed without Internet",
+          titleWidget: Center(
+            child: Text(
+              "No Internet",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontFamily: "marker",
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
+          ),
+          // secondButtonRightIcon: CupertinoIcons.arrow_right,
+          secondButtonIconColor: generalConfigController.isDarkMode.value
+              ? Styles.whiteColor
+              : Styles.blackColor,
+          isSecondButtonVisibile: true,
+          secondButtonColor: Colors.transparent,
+          secondButtonTextColor: generalConfigController.isDarkMode.value
+              ? Styles.whiteColor
+              : Styles.lightGreyTextColor,
+          // secondBorderEnable: true,
+          secondButtonHeight: 45.0.h,
+          actionsPadding:
+              const EdgeInsets.only(bottom: 10, left: 20, right: 20, top: 10),
+          autoCloseDialogOnSecondButtonTap: true,
+          onTapFirstButton: () async {
+            if (await InternetService.instance.checkInternet()) {
+              fetchData();
+            } else {
+              await checkInternet();
+            }
+          },
+          onTapSecondButton: () async {
+            fetchData();
+          });
+    }
   }
 
   @override
@@ -69,26 +120,6 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
   }
 
   Future<void> fetchData2() async {
-    generalConfigController.gameHighScore.value = await generalConfigController
-        .fetchHiveData(fieldName: DBFields.gameHighScore, defaultValue: '0');
-    generalConfigController.gameBackgroundImage.value =
-        await generalConfigController.fetchHiveData(
-            fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
-    generalConfigController.isGameSoundOn.value = await generalConfigController
-        .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
-    generalConfigController.gameBirdImage.value = await generalConfigController
-        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
-    game.playSound = generalConfigController.isGameSoundOn.value;
-    generalConfigController.loadRewardedAd(
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
-          // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
-          : '',
-      game: game,
-    );
-  }
-
-  Future<void> fetchData() async {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Platform.isAndroid ? Colors.transparent : null,
@@ -106,6 +137,50 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
     await Future.delayed(const Duration(milliseconds: 600));
     game.playSound = await generalConfigController.fetchHiveData(
         fieldName: DBFields.gameSoundOn, defaultValue: true);
+    generalConfigController.gameHighScore.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameHighScore, defaultValue: '0');
+    generalConfigController.gameBackgroundImage.value =
+        await generalConfigController.fetchHiveData(
+            fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
+    generalConfigController.isGameSoundOn.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
+    generalConfigController.gameBirdImage.value = await generalConfigController
+        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
+    game.playSound = generalConfigController.isGameSoundOn.value;
+    // generalConfigController.loadRewardedAd(
+    //   adUnitId: Platform.isAndroid
+    //       ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
+    //       // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
+    //       : '',
+    //   game: game,
+    // );
+  }
+
+  Future<void> fetchData() async {
+    // SystemChrome.setSystemUIOverlayStyle(
+    //   SystemUiOverlayStyle(
+    //     statusBarColor: Platform.isAndroid ? Colors.transparent : null,
+    //     statusBarIconBrightness: Platform.isAndroid ? Brightness.light : null,
+    //   ),
+    // );
+    // generalConfigController.isGameSplashAnimating.value = true;
+    // generalConfigController.isBirdSwitched.value = true;
+    // await Future.delayed(const Duration(milliseconds: 1200));
+    // generalConfigController.isBirdSwitched.value = false;
+    // await Future.delayed(const Duration(milliseconds: 1200));
+    // generalConfigController.isBirdSwitched.value = true;
+    // await Future.delayed(const Duration(milliseconds: 1200));
+    // generalConfigController.isBirdSwitched.value = false;
+    // await Future.delayed(const Duration(milliseconds: 600));
+    // game.playSound = await generalConfigController.fetchHiveData(
+    //     fieldName: DBFields.gameSoundOn, defaultValue: true);
+    generalConfigController.loadRewardedAd(
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
+          // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
+          : '',
+      game: game,
+    );
 
     await Get.offAll(
       () => GameWidget(
@@ -154,11 +229,11 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                     height: 150.0.h,
                     width: 150.0.h,
                   ),
-                  const Text(
+                  Text(
                     // 'Floaty Bird',
                     'Flappy Bird',
                     style: TextStyle(
-                      fontSize: 60,
+                      fontSize: 60.0.sp,
                       color: Colors.orangeAccent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Game',
@@ -244,11 +319,11 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                           end: 0.2,
                         ),
                   ),
-                  const Text(
+                  Text(
                     'Flappy Bird',
                     // 'Floaty Bird',
                     style: TextStyle(
-                      fontSize: 60,
+                      fontSize: 60.0.sp,
                       color: Colors.transparent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Game',

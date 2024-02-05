@@ -211,7 +211,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         Text(
                           'Flappy Bird',
                           style: TextStyle(
-                            fontSize: 65,
+                            fontSize: 65.0.sp,
                             fontFamily: 'Game',
                             letterSpacing: 1.5,
                             foreground: Paint()
@@ -232,10 +232,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                             ],
                           ),
                         ),
-                        const Text(
+                        Text(
                           'Flappy Bird',
                           style: TextStyle(
-                            fontSize: 65,
+                            fontSize: 65.0.sp,
                             letterSpacing: 1.5,
                             color: Colors.white,
                             fontFamily: 'Game',
@@ -251,7 +251,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         Text(
                           'Get Ready',
                           style: TextStyle(
-                            fontSize: 50,
+                            fontSize: 50.0.sp,
                             fontFamily: 'Game',
                             letterSpacing: 1.5,
                             foreground: Paint()
@@ -275,7 +275,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         Text(
                           'Get Ready',
                           style: TextStyle(
-                            fontSize: 50,
+                            fontSize: 50.0.sp,
                             letterSpacing: 1.5,
                             fontFamily: 'Game',
                             foreground: Paint()
@@ -284,10 +284,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                               ..color = Styles.whiteColor,
                           ),
                         ),
-                        const Text(
+                        Text(
                           'Get Ready',
                           style: TextStyle(
-                            fontSize: 50,
+                            fontSize: 50.0.sp,
                             letterSpacing: 1.5,
                             color: Colors.orange,
                             fontFamily: 'Game',
@@ -525,7 +525,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                   Text(
                                     'Tap to Start',
                                     style: TextStyle(
-                                      fontSize: 22,
+                                      fontSize: 22.0.sp,
                                       fontFamily: 'Marker',
                                       letterSpacing: 1.5,
                                       // fontWeight: FontWeight.bold,
@@ -548,10 +548,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                       ],
                                     ),
                                   ),
-                                  const Text(
+                                  Text(
                                     'Tap to Start',
                                     style: TextStyle(
-                                      fontSize: 22,
+                                      fontSize: 22.0.sp,
                                       color: Colors.white,
                                       letterSpacing: 1.5,
                                       // fontWeight: FontWeight.bold,
@@ -591,61 +591,67 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 MyBannerAdWidget(
                   game: widget.game,
                   adUnitId: (Platform.isAndroid
-                      ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
-                      // ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
+                      // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
+                      ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
                       : ''),
                 ),
-                Positioned(
-                  // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
-                  top: MediaQuery.sizeOf(context).height / 2 * 0.26,
-                  left: 20,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Assets.highScore,
-                        height: 50,
-                      ),
-                      Obx(
-                        () => Text(
-                          'High Score : ${generalConfigController.gameHighScore.value}',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Marker',
-                            height: 1.1,
-                            fontWeight: FontWeight.bold,
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 1
-                              ..color = Styles.darkGreyColor,
-                            shadows: <Shadow>[
-                              const Shadow(
-                                offset: Offset(2, 2),
-                                blurRadius: 5.0,
-                                color: Colors.grey,
-                              ),
-                              Shadow(
-                                offset: const Offset(2, 2),
-                                blurRadius: 6.0,
-                                color: Colors.black.withOpacity(0.8),
-                              ),
-                            ],
+                Obx(
+                  () => AnimatedPositioned(
+                    duration: 300.ms,
+                    curve: Curves.easeIn,
+                    // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
+                    top: generalConfigController.isBannerAdLoaded.value
+                        ? (MediaQuery.sizeOf(context).height / 2 * 0.26)
+                        : (MediaQuery.sizeOf(context).height / 2 * 0.15),
+                    left: 20,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.highScore,
+                          height: 50,
+                        ),
+                        Obx(
+                          () => Text(
+                            'High Score : ${generalConfigController.gameHighScore.value}',
+                            style: TextStyle(
+                              fontSize: 20.0.sp,
+                              fontFamily: 'Marker',
+                              height: 1.1,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 1
+                                ..color = Styles.darkGreyColor,
+                              shadows: <Shadow>[
+                                const Shadow(
+                                  offset: Offset(2, 2),
+                                  blurRadius: 5.0,
+                                  color: Colors.grey,
+                                ),
+                                Shadow(
+                                  offset: const Offset(2, 2),
+                                  blurRadius: 6.0,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Obx(
-                        () => Text(
-                          'High Score : ${generalConfigController.gameHighScore.value}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Marker',
-                            height: 1.1,
+                        Obx(
+                          () => Text(
+                            'High Score : ${generalConfigController.gameHighScore.value}',
+                            style: TextStyle(
+                              fontSize: 20.0.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Marker',
+                              height: 1.1,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Align(

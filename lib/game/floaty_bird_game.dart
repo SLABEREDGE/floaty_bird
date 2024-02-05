@@ -1,12 +1,14 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 
 import '../componets/background.dart';
 import '../componets/bird.dart';
 import '../componets/ground.dart';
 import '../componets/pipe_group.dart';
+import '../controller/general_config_controller.dart';
 import '../utils/ara_theme.dart';
 import 'configuration.dart';
 
@@ -39,16 +41,22 @@ class FloatyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     return TextComponent(
       text: 'Score: 0',
       // position: Vector2(size.x / 2, size.y / 2 * 0.2),
-      position: Vector2(size.x / 2, size.y * 0.155),
+      // position: Vector2(size.x / 2, size.y * 0.155),
+      position: Vector2(
+        size.x / 2,
+        generalConfigController.bannerAd != null
+            ? size.y * 0.155
+            : size.y * 0.1,
+      ),
       anchor: Anchor.center,
       textRenderer: TextPaint(
-        style: const TextStyle(
-          fontSize: 40,
+        style: TextStyle(
+          fontSize: 40.0.sp,
           color: Styles.whiteColor,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.5,
           fontFamily: 'Game',
-          shadows: <Shadow>[
+          shadows: const <Shadow>[
             Shadow(
               offset: Offset(5, 5),
               blurRadius: 5.0,

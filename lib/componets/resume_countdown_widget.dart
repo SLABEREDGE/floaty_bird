@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:floaty_bird/utils/ara_theme.dart';
+import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 
 import '../game/floaty_bird_game.dart';
@@ -60,7 +61,7 @@ class _ResumeCountDownWidgetState extends State<ResumeCountDownWidget> {
             return Text(
               timerSeconds.value.toString(),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 120,
+                    fontSize: 120.0.sp,
                     color: Styles.whiteColor,
                   ),
             );

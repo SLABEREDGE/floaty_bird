@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
+import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -38,7 +39,7 @@ class GameOverScreen extends StatelessWidget {
                     Text(
                       'Game Over',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         fontFamily: 'Game',
                         letterSpacing: 1.5,
                         foreground: Paint()
@@ -62,7 +63,7 @@ class GameOverScreen extends StatelessWidget {
                     Text(
                       'Game Over',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         fontFamily: 'Game',
                         letterSpacing: 1.5,
                         foreground: Paint()
@@ -83,10 +84,10 @@ class GameOverScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Text(
+                    Text(
                       'Game Over',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 60.0.sp,
                         letterSpacing: 1.5,
                         color: Colors.orange,
                         fontFamily: 'Game',
@@ -106,7 +107,7 @@ class GameOverScreen extends StatelessWidget {
                             ? 'New HighScore : ${game.bird.score}'
                             : 'Score: ${game.bird.score}',
                         style: TextStyle(
-                          fontSize: 50,
+                          fontSize: 50.0.sp,
                           fontFamily: 'Game',
                           letterSpacing: 1.4,
                           foreground: Paint()
@@ -134,8 +135,8 @@ class GameOverScreen extends StatelessWidget {
                                 game.bird.score
                             ? 'New HighScore : ${game.bird.score}'
                             : 'Score: ${game.bird.score}',
-                        style: const TextStyle(
-                          fontSize: 50,
+                        style: TextStyle(
+                          fontSize: 50.0.sp,
                           color: Colors.white,
                           fontFamily: 'Game',
                           letterSpacing: 1.4,
@@ -150,28 +151,32 @@ class GameOverScreen extends StatelessWidget {
                 Obx(
                   () => Visibility(
                     visible: !generalConfigController.userResumedUsingAds.value,
-                    child: BouncingWidget(
-                      child: ElevatedButton(
-                        onPressed: onWatchAds,
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.orangeAccent, elevation: 5),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Watch ad to resume',
-                              style: TextStyle(
-                                fontSize: 25,
-                                height: 1.2,
-                                letterSpacing: 1.3,
-                                fontFamily: 'Game',
+                    child: Visibility(
+                      visible: generalConfigController.rewardedAd != null,
+                      child: BouncingWidget(
+                        child: ElevatedButton(
+                          onPressed: onWatchAds,
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orangeAccent,
+                              elevation: 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Watch ad to resume',
+                                style: TextStyle(
+                                  fontSize: 25.0.sp,
+                                  height: 1.2,
+                                  letterSpacing: 1.3,
+                                  fontFamily: 'Game',
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(Icons.video_call),
-                          ],
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Icon(Icons.video_call),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -182,10 +187,10 @@ class GameOverScreen extends StatelessWidget {
                     onPressed: onRestart,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.deepOrangeAccent, elevation: 5),
-                    child: const Text(
+                    child: Text(
                       'Play Again ?',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 25.0.sp,
                         height: 1.2,
                         letterSpacing: 1.3,
                         fontFamily: 'Game',
@@ -198,22 +203,22 @@ class GameOverScreen extends StatelessWidget {
                     onPressed: onHome,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.indigoAccent, elevation: 5),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           'Home',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 25.0.sp,
                             height: 1.2,
                             fontFamily: 'Game',
                             letterSpacing: 1.3,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Icon(Icons.home),
+                        const Icon(Icons.home),
                       ],
                     ),
                   ),

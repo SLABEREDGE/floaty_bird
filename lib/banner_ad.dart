@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -24,8 +25,8 @@ class MyBannerAdWidget extends StatefulWidget {
 }
 
 class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
-  /// The banner ad to show. This is `null` until the ad is actually loaded.
-  BannerAd? _bannerAd;
+  // /// The banner ad to show. This is `null` until the ad is actually loaded.
+  // BannerAd? _bannerAd;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +38,12 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
           SizedBox(
             width: widget.adSize.width.toDouble(),
             height: widget.adSize.height.toDouble(),
-            child: _bannerAd == null
+            child: generalConfigController.bannerAd == null
                 // Nothing to render yet.
                 ? const SizedBox.shrink()
                 // The actual ad.
-                : Center(child: AdWidget(ad: _bannerAd!)),
+                : Center(
+                    child: AdWidget(ad: generalConfigController.bannerAd!)),
           ),
         ],
       ),
@@ -56,7 +58,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
 
   @override
   void dispose() {
-    _bannerAd?.dispose();
+    generalConfigController.bannerAd?.dispose();
     super.dispose();
   }
 
@@ -66,8 +68,8 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
       size: widget.adSize,
       adUnitId: widget.adUnitId ??
           (Platform.isAndroid
-              ? 'ca-app-pub-7487124206061387/2026325080' //AdSize.fullBanner,
-              // ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
+              // ? 'ca-app-pub-7487124206061387/2026325080' //AdSize.fullBanner,
+              ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
               : ''),
       request: const AdRequest(),
       listener: BannerAdListener(
@@ -79,13 +81,15 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
             return;
           }
           setState(() {
-            _bannerAd = ad as BannerAd;
+            generalConfigController.bannerAd = ad as BannerAd;
+            generalConfigController.isBannerAdLoaded.value = true;
           });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, error) {
           log('BannerAd failed to load: $error');
           ad.dispose();
+          generalConfigController.isBannerAdLoaded.value = false;
           // _loadAd();
         },
       ),

@@ -4,6 +4,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/assets.dart';
 import 'package:floaty_bird/utils/bouncing_widget.dart';
+import 'package:floaty_bird/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -68,12 +69,12 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Stack(
+                    Stack(
                       children: [
                         Text(
                           "Do you want to resume ?",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 30.0.sp,
                             fontFamily: 'Marker',
                             color: Colors.deepOrange,
                           ),
@@ -111,10 +112,10 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
+                                Text(
                                   "Watch Ad",
                                   style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 24.0.sp,
                                     height: 1.1,
                                     fontFamily: 'Marker',
                                     color: Colors.white,
@@ -157,13 +158,13 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                       child: Container(
                         color: Colors.transparent,
                         margin: const EdgeInsets.only(top: 3),
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 5),
                           child: Text(
                             "Cancel",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.0.sp,
                               fontFamily: 'Marker',
                               color: Styles.lightGreyTextColor,
                             ),
