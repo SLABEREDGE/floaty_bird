@@ -591,67 +591,61 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 MyBannerAdWidget(
                   game: widget.game,
                   adUnitId: (Platform.isAndroid
-                      // ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
-                      ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
+                      ? 'ca-app-pub-7487124206061387/9927790439' //AdSize.fullBanner,
+                      // ? 'ca-app-pub-3940256099942544/6300978111' // Test AdSize.banner,
                       : ''),
                 ),
-                Obx(
-                  () => AnimatedPositioned(
-                    duration: 300.ms,
-                    curve: Curves.easeIn,
-                    // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
-                    top: generalConfigController.isBannerAdLoaded.value
-                        ? (MediaQuery.sizeOf(context).height / 2 * 0.26)
-                        : (MediaQuery.sizeOf(context).height / 2 * 0.15),
-                    left: 20,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.highScore,
-                          height: 50,
-                        ),
-                        Obx(
-                          () => Text(
-                            'High Score : ${generalConfigController.gameHighScore.value}',
-                            style: TextStyle(
-                              fontSize: 20.0.sp,
-                              fontFamily: 'Marker',
-                              height: 1.1,
-                              fontWeight: FontWeight.bold,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..strokeWidth = 1
-                                ..color = Styles.darkGreyColor,
-                              shadows: <Shadow>[
-                                const Shadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 5.0,
-                                  color: Colors.grey,
-                                ),
-                                Shadow(
-                                  offset: const Offset(2, 2),
-                                  blurRadius: 6.0,
-                                  color: Colors.black.withOpacity(0.8),
-                                ),
-                              ],
-                            ),
+                Positioned(
+                  // top: MediaQuery.sizeOf(context).height / 2 * 0.155,
+                  top: (MediaQuery.sizeOf(context).height / 2 * 0.26),
+                  left: 20,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.highScore,
+                        height: 50,
+                      ),
+                      Obx(
+                        () => Text(
+                          'High Score : ${generalConfigController.gameHighScore.value}',
+                          style: TextStyle(
+                            fontSize: 20.0.sp,
+                            fontFamily: 'Marker',
+                            height: 1.1,
+                            fontWeight: FontWeight.bold,
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 1
+                              ..color = Styles.darkGreyColor,
+                            shadows: <Shadow>[
+                              const Shadow(
+                                offset: Offset(2, 2),
+                                blurRadius: 5.0,
+                                color: Colors.grey,
+                              ),
+                              Shadow(
+                                offset: const Offset(2, 2),
+                                blurRadius: 6.0,
+                                color: Colors.black.withOpacity(0.8),
+                              ),
+                            ],
                           ),
                         ),
-                        Obx(
-                          () => Text(
-                            'High Score : ${generalConfigController.gameHighScore.value}',
-                            style: TextStyle(
-                              fontSize: 20.0.sp,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Marker',
-                              height: 1.1,
-                            ),
+                      ),
+                      Obx(
+                        () => Text(
+                          'High Score : ${generalConfigController.gameHighScore.value}',
+                          style: TextStyle(
+                            fontSize: 20.0.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Marker',
+                            height: 1.1,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Align(

@@ -24,96 +24,90 @@ class _SettingsMenuButtonState extends State<SettingsMenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => AnimatedPositioned(
-        duration: 300.ms,
-        curve: Curves.easeIn,
-        // top: MediaQuery.sizeOf(context).height / 2 * 0.15,
-        top: generalConfigController.isBannerAdLoaded.value
-            ? MediaQuery.sizeOf(context).height / 2 * 0.26
-            : MediaQuery.sizeOf(context).height / 2 * 0.15,
-        right: 20,
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  clicked = !clicked;
-                });
-              },
-              child: BouncingWidget(
-                child: SvgPicture.asset(
-                  Assets.settingsButton,
-                  height: 45,
-                ),
+    return Positioned(
+      // top: MediaQuery.sizeOf(context).height / 2 * 0.15,
+      top: MediaQuery.sizeOf(context).height / 2 * 0.26,
+      right: 20,
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                clicked = !clicked;
+              });
+            },
+            child: BouncingWidget(
+              child: SvgPicture.asset(
+                Assets.settingsButton,
+                height: 45,
               ),
             ),
-            Visibility(
-              visible: clicked,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: Obx(
-                  () => GestureDetector(
-                    onTap: () async {
-                      if (generalConfigController.isGameSoundOn.value) {
-                        generalConfigController.isGameSoundOn.value = false;
-                        widget.game.playSound = false;
-                        await generalConfigController.setHiveData(
-                          fieldName: DBFields.gameSoundOn,
-                          data: generalConfigController.isGameSoundOn.value,
-                        );
-                        FlameAudio.bgm.pause();
-                      } else {
-                        generalConfigController.isGameSoundOn.value = true;
-                        widget.game.playSound = true;
-                        await generalConfigController.setHiveData(
-                          fieldName: DBFields.gameSoundOn,
-                          data: generalConfigController.isGameSoundOn.value,
-                        );
-                        FlameAudio.bgm.resume();
-                      }
-                      setState(() {
-                        clicked = !clicked;
-                      });
-                    },
-                    child: BouncingWidget(
-                      child: SvgPicture.asset(
-                        generalConfigController.isGameSoundOn.value
-                            ? Assets.soundOnButton
-                            : Assets.soundOffButton,
-                        height: 45,
-                      ),
+          ),
+          Visibility(
+            visible: clicked,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Obx(
+                () => GestureDetector(
+                  onTap: () async {
+                    if (generalConfigController.isGameSoundOn.value) {
+                      generalConfigController.isGameSoundOn.value = false;
+                      widget.game.playSound = false;
+                      await generalConfigController.setHiveData(
+                        fieldName: DBFields.gameSoundOn,
+                        data: generalConfigController.isGameSoundOn.value,
+                      );
+                      FlameAudio.bgm.pause();
+                    } else {
+                      generalConfigController.isGameSoundOn.value = true;
+                      widget.game.playSound = true;
+                      await generalConfigController.setHiveData(
+                        fieldName: DBFields.gameSoundOn,
+                        data: generalConfigController.isGameSoundOn.value,
+                      );
+                      FlameAudio.bgm.resume();
+                    }
+                    setState(() {
+                      clicked = !clicked;
+                    });
+                  },
+                  child: BouncingWidget(
+                    child: SvgPicture.asset(
+                      generalConfigController.isGameSoundOn.value
+                          ? Assets.soundOnButton
+                          : Assets.soundOffButton,
+                      height: 45,
                     ),
                   ),
                 ),
               ),
             ),
-            Visibility(
-              visible: clicked,
-              child: GestureDetector(
-                onTap: () {
-                  widget.game.bird.resetBird();
-                  widget.game.bird.resetScore();
-                  widget.game.overlays.remove('gameOver');
-                  widget.game.overlays.remove('pauseMenuScreen');
-                  widget.game.pauseEngine();
-                  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                  //     overlays: SystemUiOverlay.values);
-                  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                  FlameAudio.bgm.stop();
-                  // Get.back();
-                  clicked = !clicked;
-                },
-                child: BouncingWidget(
-                  child: SvgPicture.asset(
-                    Assets.cancelButton,
-                    height: 45,
-                  ),
+          ),
+          Visibility(
+            visible: clicked,
+            child: GestureDetector(
+              onTap: () {
+                widget.game.bird.resetBird();
+                widget.game.bird.resetScore();
+                widget.game.overlays.remove('gameOver');
+                widget.game.overlays.remove('pauseMenuScreen');
+                widget.game.pauseEngine();
+                // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                //     overlays: SystemUiOverlay.values);
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                FlameAudio.bgm.stop();
+                // Get.back();
+                clicked = !clicked;
+              },
+              child: BouncingWidget(
+                child: SvgPicture.asset(
+                  Assets.cancelButton,
+                  height: 45,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -47,9 +47,7 @@ class GeneralConfigController extends GetxController {
   RxBool isGameSplashAnimating = false.obs;
   RxBool isBirdSwitched = false.obs;
   RxBool userResumedUsingAds = false.obs;
-  RxBool isBannerAdLoaded = false.obs;
   RewardedAd? rewardedAd;
-  BannerAd? bannerAd;
 
   // Hive Methods
   Future<void> openHiveBox() async {
