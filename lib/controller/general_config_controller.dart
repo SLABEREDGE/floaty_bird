@@ -154,9 +154,9 @@ class GeneralConfigController extends GetxController {
         // Called when an ad request failed.
         onAdFailedToLoad: (error) {
           hideLoader();
-          showGeneralToastMessage(
-            message: 'Failed to load Ad!',
-          );
+          // showGeneralToastMessage(
+          //   message: 'Failed to load Ad!',
+          // );
           log('RewardedAd failed to load: $error');
         },
       ),
