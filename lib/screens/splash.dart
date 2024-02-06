@@ -6,17 +6,16 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:floaty_bird/componets/resume_countdown_widget.dart';
 import 'package:floaty_bird/controller/general_config_controller.dart';
 import 'package:floaty_bird/utils/extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+
 import '../banner_ad.dart';
 import '../componets/pause_menu_button.dart';
 import '../game/floaty_bird_game.dart';
 import '../utils/ara_theme.dart';
 import '../utils/assets.dart';
-import '../utils/common_methods.dart';
 import '../utils/constants.dart';
 import '../utils/internet_service.dart';
 import 'game_over_screen.dart';
@@ -48,34 +47,8 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
       await Future.delayed(const Duration(milliseconds: 4250));
       fetchData();
     } else {
-      await showDialogWithMessage(
-          message:
-              "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
-          firstButtonText: "Try Again",
-          secondButtonText: "Proceed without Internet",
-          titleWidget: Center(
-            child: Text(
-              "No Internet",
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontFamily: "marker",
-                    fontWeight: FontWeight.normal,
-                  ),
-            ),
-          ),
-          // secondButtonRightIcon: CupertinoIcons.arrow_right,
-          secondButtonIconColor: generalConfigController.isDarkMode.value
-              ? Styles.whiteColor
-              : Styles.blackColor,
-          isSecondButtonVisibile: true,
-          secondButtonColor: Colors.transparent,
-          secondButtonTextColor: generalConfigController.isDarkMode.value
-              ? Styles.whiteColor
-              : Styles.lightGreyTextColor,
-          // secondBorderEnable: true,
-          secondButtonHeight: 45.0.h,
-          actionsPadding:
-              const EdgeInsets.only(bottom: 10, left: 20, right: 20, top: 10),
-          autoCloseDialogOnSecondButtonTap: true,
+      await Get.dialog(
+        NoInternetDialog(
           onTapFirstButton: () async {
             if (await InternetService.instance.checkInternet()) {
               fetchData();
@@ -85,7 +58,10 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
           },
           onTapSecondButton: () async {
             fetchData();
-          });
+          },
+        ),
+        barrierDismissible: false,
+      );
     }
   }
 
@@ -340,6 +316,121 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
               curve: Curves.ease,
             ),
       ),
+    );
+  }
+}
+
+class NoInternetDialog extends StatefulWidget {
+  final VoidCallback? onTapFirstButton;
+  final VoidCallback? onTapSecondButton;
+
+  const NoInternetDialog(
+      {super.key, this.onTapFirstButton, this.onTapSecondButton});
+
+  @override
+  State<NoInternetDialog> createState() => _NoInternetDialogState();
+}
+
+class _NoInternetDialogState extends State<NoInternetDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Container(
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 0, right: 20, left: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Styles.whiteColor,
+            ),
+            child: Column(
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "No Internet",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: "marker",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 24.0.sp,
+                      ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontFamily: "sofia",
+                        fontWeight: FontWeight.normal,
+                        height: 1.4,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    if (widget.onTapFirstButton != null) {
+                      Get.back();
+                      widget.onTapFirstButton!();
+                    }
+                  },
+                  child: Container(
+                    height: generalConfigController.dheight.value * 0.07,
+                    decoration: BoxDecoration(
+                      color: Styles.primaryGreenColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Try Again",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontFamily: "sofia",
+                              fontWeight: FontWeight.normal,
+                              color: Styles.whiteColor,
+                            ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    if (widget.onTapSecondButton != null) {
+                      Get.back();
+                      widget.onTapSecondButton!();
+                    }
+                  },
+                  child: Container(
+                    height: generalConfigController.dheight.value * 0.06,
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Text(
+                        "Continue without Internet",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontFamily: "sofia",
+                              fontWeight: FontWeight.normal,
+                              color: Styles.lightGreyTextColor,
+                            ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+              .animate()
+              .fade(duration: 400.ms, curve: Curves.fastOutSlowIn)
+              .scale(duration: 400.ms, curve: Curves.fastOutSlowIn),
+        ),
+      ],
     );
   }
 }

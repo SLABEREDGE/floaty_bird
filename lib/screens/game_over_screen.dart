@@ -27,203 +27,216 @@ class GameOverScreen extends StatelessWidget {
         children: [
           SettingsMenuButton(game: game),
           Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Image.asset(Assets.gameOver),
-                const SizedBox(
-                  height: 20,
-                ),
-                Stack(
-                  children: [
-                    Text(
-                      'Game Over',
-                      style: TextStyle(
-                        fontSize: 60.0.sp,
-                        fontFamily: 'Game',
-                        letterSpacing: 1.5,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 10
-                          ..color = Styles.blackColor,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            offset: Offset(7, 5),
-                            blurRadius: 8.0,
-                            color: Colors.grey,
-                          ),
-                          Shadow(
-                            offset: Offset(8, 5),
-                            blurRadius: 12.0,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      'Game Over',
-                      style: TextStyle(
-                        fontSize: 60.0.sp,
-                        fontFamily: 'Game',
-                        letterSpacing: 1.5,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 5
-                          ..color = Styles.whiteColor,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            offset: Offset(7, 5),
-                            blurRadius: 8.0,
-                            color: Colors.grey,
-                          ),
-                          Shadow(
-                            offset: Offset(8, 5),
-                            blurRadius: 12.0,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      'Game Over',
-                      style: TextStyle(
-                        fontSize: 60.0.sp,
-                        letterSpacing: 1.5,
-                        color: Colors.orange,
-                        fontFamily: 'Game',
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Stack(
-                  children: [
-                    Obx(
-                      () => Text(
-                        int.parse(generalConfigController.gameHighScore.value) <
-                                game.bird.score
-                            ? 'New HighScore : ${game.bird.score}'
-                            : 'Score: ${game.bird.score}',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Image.asset(Assets.gameOver),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Stack(
+                    children: [
+                      Text(
+                        'Game Over',
                         style: TextStyle(
-                          fontSize: 50.0.sp,
+                          fontSize: 60.0.sp,
                           fontFamily: 'Game',
-                          letterSpacing: 1.4,
+                          letterSpacing: 1.5,
                           foreground: Paint()
                             ..style = PaintingStyle.stroke
-                            ..strokeWidth = 3
-                            ..color = Styles.darkGreyColor,
+                            ..strokeWidth = 10
+                            ..color = Styles.blackColor,
                           shadows: const <Shadow>[
                             Shadow(
-                              offset: Offset(5, 5),
-                              blurRadius: 5.0,
+                              offset: Offset(7, 5),
+                              blurRadius: 8.0,
                               color: Colors.grey,
                             ),
                             Shadow(
-                              offset: Offset(5, 5),
-                              blurRadius: 10.0,
+                              offset: Offset(8, 5),
+                              blurRadius: 12.0,
                               color: Colors.black,
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    Obx(
-                      () => Text(
-                        int.parse(generalConfigController.gameHighScore.value) <
-                                game.bird.score
-                            ? 'New HighScore : ${game.bird.score}'
-                            : 'Score: ${game.bird.score}',
+                      Text(
+                        'Game Over',
                         style: TextStyle(
-                          fontSize: 50.0.sp,
-                          color: Colors.white,
+                          fontSize: 60.0.sp,
                           fontFamily: 'Game',
-                          letterSpacing: 1.4,
+                          letterSpacing: 1.5,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 5
+                            ..color = Styles.whiteColor,
+                          shadows: const <Shadow>[
+                            Shadow(
+                              offset: Offset(7, 5),
+                              blurRadius: 8.0,
+                              color: Colors.grey,
+                            ),
+                            Shadow(
+                              offset: Offset(8, 5),
+                              blurRadius: 12.0,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Obx(
-                  () => Visibility(
-                    visible: !generalConfigController.userResumedUsingAds.value,
-                    child: Visibility(
-                      visible: generalConfigController.rewardedAd != null,
-                      child: BouncingWidget(
-                        child: ElevatedButton(
-                          onPressed: onWatchAds,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.orangeAccent,
-                              elevation: 5),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Watch ad to resume',
-                                style: TextStyle(
-                                  fontSize: 25.0.sp,
-                                  height: 1.2,
-                                  letterSpacing: 1.3,
-                                  fontFamily: 'Game',
+                      Text(
+                        'Game Over',
+                        style: TextStyle(
+                          fontSize: 60.0.sp,
+                          letterSpacing: 1.5,
+                          color: Colors.orange,
+                          fontFamily: 'Game',
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Stack(
+                    children: [
+                      Obx(
+                        () => FittedBox(
+                          child: Text(
+                            int.parse(generalConfigController
+                                        .gameHighScore.value) <
+                                    game.bird.score
+                                ? 'New HighScore : ${game.bird.score}'
+                                : 'Score: ${game.bird.score}',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 50.0.sp,
+                              fontFamily: 'Game',
+                              letterSpacing: 1.4,
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 3
+                                ..color = Styles.darkGreyColor,
+                              shadows: const <Shadow>[
+                                Shadow(
+                                  offset: Offset(5, 5),
+                                  blurRadius: 5.0,
+                                  color: Colors.grey,
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Icon(Icons.video_call),
-                            ],
+                                Shadow(
+                                  offset: Offset(5, 5),
+                                  blurRadius: 10.0,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Obx(
+                        () => FittedBox(
+                          child: Text(
+                            int.parse(generalConfigController
+                                        .gameHighScore.value) <
+                                    game.bird.score
+                                ? 'New HighScore : ${game.bird.score}'
+                                : 'Score: ${game.bird.score}',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 50.0.sp,
+                              color: Colors.white,
+                              fontFamily: 'Game',
+                              letterSpacing: 1.4,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Obx(
+                    () => Visibility(
+                      visible:
+                          !generalConfigController.userResumedUsingAds.value,
+                      child: Visibility(
+                        visible: generalConfigController.rewardedAd != null,
+                        child: BouncingWidget(
+                          child: ElevatedButton(
+                            onPressed: onWatchAds,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orangeAccent,
+                                elevation: 5),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Watch ad to resume',
+                                  style: TextStyle(
+                                    fontSize: 25.0.sp,
+                                    height: 1.2,
+                                    letterSpacing: 1.3,
+                                    fontFamily: 'Game',
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(Icons.video_call),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                BouncingWidget(
-                  child: ElevatedButton(
-                    onPressed: onRestart,
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepOrangeAccent, elevation: 5),
-                    child: Text(
-                      'Play Again ?',
-                      style: TextStyle(
-                        fontSize: 25.0.sp,
-                        height: 1.2,
-                        letterSpacing: 1.3,
-                        fontFamily: 'Game',
+                  BouncingWidget(
+                    child: ElevatedButton(
+                      onPressed: onRestart,
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.deepOrangeAccent,
+                          elevation: 5),
+                      child: Text(
+                        'Play Again ?',
+                        style: TextStyle(
+                          fontSize: 25.0.sp,
+                          height: 1.2,
+                          letterSpacing: 1.3,
+                          fontFamily: 'Game',
+                        ),
                       ),
                     ),
                   ),
-                ),
-                BouncingWidget(
-                  child: ElevatedButton(
-                    onPressed: onHome,
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigoAccent, elevation: 5),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Home',
-                          style: TextStyle(
-                            fontSize: 25.0.sp,
-                            height: 1.2,
-                            fontFamily: 'Game',
-                            letterSpacing: 1.3,
+                  BouncingWidget(
+                    child: ElevatedButton(
+                      onPressed: onHome,
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigoAccent, elevation: 5),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Home',
+                            style: TextStyle(
+                              fontSize: 25.0.sp,
+                              height: 1.2,
+                              fontFamily: 'Game',
+                              letterSpacing: 1.3,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Icon(Icons.home),
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Icon(Icons.home),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

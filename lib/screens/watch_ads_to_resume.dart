@@ -77,6 +77,7 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                             fontSize: 30.0.sp,
                             fontFamily: 'Marker',
                             color: Colors.deepOrange,
+                            height: 1.2,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -107,7 +108,7 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                           children: [
                             SvgPicture.asset(
                               Assets.adsButton,
-                              height: 50,
+                              height: MediaQuery.of(context).size.height * 0.06,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +128,8 @@ class _WatchAdsToResumeState extends State<WatchAdsToResume>
                                 ),
                                 SvgPicture.asset(
                                   Assets.playButton,
-                                  height: 30,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.035,
                                 ),
                               ],
                             ),

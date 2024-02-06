@@ -239,10 +239,11 @@ class CustomDialog extends StatelessWidget {
                 message,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    height: 1.5,
-                    color: (generalConfigController.isDarkMode.value)
-                        ? Styles.whiteColor
-                        : Styles.blackColor),
+                      height: 1.5,
+                      color: (generalConfigController.isDarkMode.value)
+                          ? Styles.whiteColor
+                          : Styles.blackColor,
+                    ),
               ),
             )
           : null,
