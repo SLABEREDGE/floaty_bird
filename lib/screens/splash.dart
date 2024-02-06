@@ -337,106 +337,138 @@ class NoInternetDialog extends StatefulWidget {
 class _NoInternetDialogState extends State<NoInternetDialog> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Container(
-            padding:
-                const EdgeInsets.only(top: 20, bottom: 0, right: 20, left: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Styles.whiteColor,
-            ),
-            child: Column(
-              // mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "No Internet",
-                  style: TextStyle(
-                    fontFamily: "marker",
-                    fontWeight: FontWeight.normal,
-                    fontSize: 24.0.sp,
+    return Material(
+      color: Colors.transparent,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Container(
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 0, right: 20, left: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Styles.whiteColor,
+              ),
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "No Internet",
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontFamily: "marker",
+                          color: Styles.blackColor,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 24.0.sp,
+                        ),
+                    // TextStyle(
+                    //   fontFamily: "marker",
+                    //   color: Styles.blackColor,
+                    //   fontWeight: FontWeight.normal,
+                    //   fontSize: 24.0.sp,
+                    // ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
-                  style: TextStyle(
-                    fontSize: 16.0.sp,
-                    fontFamily: "sofia",
-                    fontWeight: FontWeight.normal,
-                    height: 1.4,
+                  const SizedBox(
+                    height: 15,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    if (widget.onTapFirstButton != null) {
-                      Get.back();
-                      widget.onTapFirstButton!();
-                    }
-                  },
-                  child: Container(
-                    height: generalConfigController.dheight.value * 0.07,
-                    decoration: BoxDecoration(
-                      color: Styles.primaryGreenColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Try Again",
-                        style: TextStyle(
+                  Text(
+                    "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontSize: 16.0.sp,
                           fontFamily: "sofia",
                           fontWeight: FontWeight.normal,
-                          color: Styles.whiteColor,
+                          color: Styles.blackColor,
+                          height: 1.4,
+                        ),
+                    // TextStyle(
+                    //   fontSize: 16.0.sp,
+                    //   fontFamily: "sofia",
+                    //   fontWeight: FontWeight.normal,
+                    //   color: Styles.blackColor,
+                    //   height: 1.4,
+                    // ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      if (widget.onTapFirstButton != null) {
+                        Get.back();
+                        widget.onTapFirstButton!();
+                      }
+                    },
+                    child: Container(
+                      height: generalConfigController.dheight.value * 0.07,
+                      decoration: BoxDecoration(
+                        color: Styles.primaryGreenColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Try Again",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    fontSize: 16.0.sp,
+                                    fontFamily: "sofia",
+                                    fontWeight: FontWeight.normal,
+                                    color: Styles.whiteColor,
+                                  ),
+                          //  TextStyle(
+                          //   fontSize: 16.0.sp,
+                          //   fontFamily: "sofia",
+                          //   fontWeight: FontWeight.normal,
+                          //   color: Styles.whiteColor,
+                          // ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    if (widget.onTapSecondButton != null) {
-                      Get.back();
-                      widget.onTapSecondButton!();
-                    }
-                  },
-                  child: Container(
-                    height: generalConfigController.dheight.value * 0.06,
-                    color: Colors.transparent,
-                    child: Center(
-                      child: Text(
-                        "Continue without Internet",
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          fontFamily: "sofia",
-                          fontWeight: FontWeight.normal,
-                          color: Styles.lightGreyTextColor,
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      if (widget.onTapSecondButton != null) {
+                        Get.back();
+                        widget.onTapSecondButton!();
+                      }
+                    },
+                    child: Container(
+                      height: generalConfigController.dheight.value * 0.06,
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Text(
+                          "Continue without Internet",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    fontSize: 16.0.sp,
+                                    fontFamily: "sofia",
+                                    fontWeight: FontWeight.normal,
+                                    color: Styles.lightGreyTextColor,
+                                  ),
+                          //  TextStyle(
+                          //   fontSize: 16.0.sp,
+                          //   fontFamily: "sofia",
+                          //   fontWeight: FontWeight.normal,
+                          //   color: Styles.lightGreyTextColor,
+                          // ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-              .animate()
-              .fade(duration: 400.ms, curve: Curves.fastOutSlowIn)
-              .scale(duration: 400.ms, curve: Curves.fastOutSlowIn),
-        ),
-      ],
+                ],
+              ),
+            )
+                .animate()
+                .fade(duration: 400.ms, curve: Curves.fastOutSlowIn)
+                .scale(duration: 400.ms, curve: Curves.fastOutSlowIn),
+          ),
+        ],
+      ),
     );
   }
 }
