@@ -355,22 +355,23 @@ class _NoInternetDialogState extends State<NoInternetDialog> {
               children: [
                 Text(
                   "No Internet",
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontFamily: "marker",
-                        fontWeight: FontWeight.normal,
-                        fontSize: 24.0.sp,
-                      ),
+                  style: TextStyle(
+                    fontFamily: "marker",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 24.0.sp,
+                  ),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
                 Text(
                   "Uh oh! Looks like you're not online. You can still play, but some cool stuff might be missing. Want to connect?",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontFamily: "sofia",
-                        fontWeight: FontWeight.normal,
-                        height: 1.4,
-                      ),
+                  style: TextStyle(
+                    fontSize: 16.0.sp,
+                    fontFamily: "sofia",
+                    fontWeight: FontWeight.normal,
+                    height: 1.4,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -392,11 +393,12 @@ class _NoInternetDialogState extends State<NoInternetDialog> {
                     child: Center(
                       child: Text(
                         "Try Again",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontFamily: "sofia",
-                              fontWeight: FontWeight.normal,
-                              color: Styles.whiteColor,
-                            ),
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
+                          fontFamily: "sofia",
+                          fontWeight: FontWeight.normal,
+                          color: Styles.whiteColor,
+                        ),
                       ),
                     ),
                   ),
@@ -417,11 +419,12 @@ class _NoInternetDialogState extends State<NoInternetDialog> {
                     child: Center(
                       child: Text(
                         "Continue without Internet",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontFamily: "sofia",
-                              fontWeight: FontWeight.normal,
-                              color: Styles.lightGreyTextColor,
-                            ),
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
+                          fontFamily: "sofia",
+                          fontWeight: FontWeight.normal,
+                          color: Styles.lightGreyTextColor,
+                        ),
                       ),
                     ),
                   ),
