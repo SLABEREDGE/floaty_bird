@@ -48,17 +48,20 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
       fetchData();
     } else {
       await Get.dialog(
-        NoInternetDialog(
-          onTapFirstButton: () async {
-            if (await InternetService.instance.checkInternet()) {
+        PopScope(
+          canPop: false,
+          child: NoInternetDialog(
+            onTapFirstButton: () async {
+              if (await InternetService.instance.checkInternet()) {
+                fetchData();
+              } else {
+                await checkInternet();
+              }
+            },
+            onTapSecondButton: () async {
               fetchData();
-            } else {
-              await checkInternet();
-            }
-          },
-          onTapSecondButton: () async {
-            fetchData();
-          },
+            },
+          ),
         ),
         barrierDismissible: false,
       );
