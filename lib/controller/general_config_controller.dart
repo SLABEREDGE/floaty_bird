@@ -41,7 +41,8 @@ class GeneralConfigController extends GetxController {
   RxBool onSelectGame = false.obs;
   RxString gameHighScore = "0".obs;
   RxString gameBackgroundImage = "0".obs;
-  RxString gameBirdImage = "0".obs;
+  RxString gameBirdImage = "1".obs;
+  // RxString gameBirdImage = "0".obs;
   RxBool isGameBackgroundChange = false.obs;
   RxBool isGameSoundOn = false.obs;
   RxBool isGameSplashAnimating = false.obs;
@@ -142,7 +143,7 @@ class GeneralConfigController extends GetxController {
               },
             );
 
-            rewardedAd!.setImmersiveMode(true);
+            // rewardedAd!.setImmersiveMode(true);
             // hideLoader();
             // rewardedAd!.show(onUserEarnedReward:
             //     (AdWithoutView ad, RewardItem reward) async {

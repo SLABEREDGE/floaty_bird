@@ -124,15 +124,16 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
     generalConfigController.gameBirdImage.value = await generalConfigController
-        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
+        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "1");
+    // .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
     game.playSound = generalConfigController.isGameSoundOn.value;
-    // generalConfigController.loadRewardedAd(
-    //   adUnitId: Platform.isAndroid
-    //       ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
-    //       // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
-    //       : '',
-    //   game: game,
-    // );
+    generalConfigController.loadRewardedAd(
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
+          // ? 'ca-app-pub-3940256099942544/5224354917' //test rewared ad
+          : '',
+      game: game,
+    );
   }
 
   Future<void> fetchData() async {
@@ -156,7 +157,7 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
     generalConfigController.loadRewardedAd(
       adUnitId: Platform.isAndroid
           ? 'ca-app-pub-7487124206061387/4696479208' // rewarded ad
-          // ? 'ca-app-pub-7487124206061387/4696479208' //test rewared ad
+          // ? 'ca-app-pub-3940256099942544/5224354917' //test rewared ad
           : '',
       game: game,
     );
@@ -210,7 +211,7 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                   ),
                   Text(
                     // 'Floaty Bird',
-                    'Flappy Bird',
+                    'Flying Bird',
                     style: TextStyle(
                       fontSize: 60.0.sp,
                       color: Colors.orangeAccent,
@@ -299,7 +300,7 @@ class _SplashState extends State<Splash> with WidgetsBindingObserver {
                         ),
                   ),
                   Text(
-                    'Flappy Bird',
+                    'Flying Bird',
                     // 'Floaty Bird',
                     style: TextStyle(
                       fontSize: 60.0.sp,

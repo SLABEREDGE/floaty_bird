@@ -36,7 +36,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
         await generalConfigController.fetchHiveData(
             fieldName: DBFields.gameBackgroundImage, defaultValue: '0');
     generalConfigController.gameBirdImage.value = await generalConfigController
-        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
+        // .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "0");
+        .fetchHiveData(fieldName: DBFields.gameBirdImage, defaultValue: "1");
     generalConfigController.isGameSoundOn.value = await generalConfigController
         .fetchHiveData(fieldName: DBFields.gameSoundOn, defaultValue: true);
     widget.game.playSound = generalConfigController.isGameSoundOn.value;
@@ -102,51 +103,6 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
           () => Container(
             width: double.infinity,
             height: double.infinity,
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: AssetImage(
-            //  generalConfigController.gameBackgroundImage.value == '0'
-            //               ? Assets.cityMenu
-            //               : generalConfigController.gameBackgroundImage.value ==
-            //                       '1'
-            //                   ? Assets.desertMenu
-            //                   : generalConfigController
-            //                               .gameBackgroundImage.value ==
-            //                           '2'
-            //                       ? Assets.forestMenu
-            //                       : generalConfigController
-            //                                   .gameBackgroundImage.value ==
-            //                               '3'
-            //                           ? Assets.hellMenu
-            //                           : generalConfigController
-            //                                       .gameBackgroundImage.value ==
-            //                                   '4'
-            //                               ? Assets.iceMenu
-            //                               : generalConfigController
-            //                                           .gameBackgroundImage
-            //                                           .value ==
-            //                                       '5'
-            //                                   ? Assets.lavaMenu
-            //                                   : generalConfigController
-            //                                               .gameBackgroundImage
-            //                                               .value ==
-            //                                           '6'
-            //                                       ? Assets.mountainMenu
-            //                                       : generalConfigController
-            //                                                   .gameBackgroundImage
-            //                                                   .value ==
-            //                                               '7'
-            //                                           ? Assets.nebulaMenu
-            //                                           : generalConfigController
-            //                                                       .gameBackgroundImage
-            //                                                       .value ==
-            //                                                   '8'
-            //                                               ? Assets.snowMenu
-            //                                               : Assets.walterfallMenu,
-            //     ),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -209,7 +165,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     Stack(
                       children: [
                         Text(
-                          'Flappy Bird',
+                          'Flying Bird',
                           style: TextStyle(
                             fontSize: 65.0.sp,
                             fontFamily: 'Game',
@@ -233,7 +189,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                           ),
                         ),
                         Text(
-                          'Flappy Bird',
+                          'Flying Bird',
                           style: TextStyle(
                             fontSize: 65.0.sp,
                             letterSpacing: 1.5,
@@ -301,82 +257,82 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BouncingWidget(
-                          child: GestureDetector(
-                            onTap: () async {
-                              if (generalConfigController.gameBirdImage.value ==
-                                  "0") {
-                                generalConfigController.gameBirdImage.value =
-                                    '5';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '5',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "1") {
-                                generalConfigController.gameBirdImage.value =
-                                    '0';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '0',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "2") {
-                                generalConfigController.gameBirdImage.value =
-                                    '1';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '1',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "3") {
-                                generalConfigController.gameBirdImage.value =
-                                    '2';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '2',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "4") {
-                                generalConfigController.gameBirdImage.value =
-                                    '3';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '3',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "5") {
-                                generalConfigController.gameBirdImage.value =
-                                    '4';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '4',
-                                );
-                              } else {
-                                generalConfigController.gameBirdImage.value =
-                                    '0';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '0',
-                                );
-                              }
-                              widget.game.bird.onLoad();
-                              widget.game.interval.reset();
-                            },
-                            child: SvgPicture.asset(
-                              Assets.back,
-                              height: 40,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 40.0.w,
-                        ),
+                        // BouncingWidget(
+                        //   child: GestureDetector(
+                        //     onTap: () async {
+                        //       if (generalConfigController.gameBirdImage.value ==
+                        //           "0") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '5';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '5',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "1") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '0';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '0',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "2") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '1';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '1',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "3") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '2';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '2',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "4") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '3';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '3',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "5") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '4';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '4',
+                        //         );
+                        //       } else {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '0';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '0',
+                        //         );
+                        //       }
+                        //       widget.game.bird.onLoad();
+                        //       widget.game.interval.reset();
+                        //     },
+                        //     child: SvgPicture.asset(
+                        //       Assets.back,
+                        //       height: 40,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   width: 40.0.w,
+                        // ),
                         Obx(
                           () => Image.asset(
                             generalConfigController.gameBirdImage.value == "0"
@@ -412,85 +368,84 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                                 curve: Curves.easeInOut,
                               ),
                         ),
-                        SizedBox(
-                          width: 40.0.w,
-                        ),
-                        BouncingWidget(
-                          child: GestureDetector(
-                            onTap: () async {
-                              if (generalConfigController.gameBirdImage.value ==
-                                  "0") {
-                                generalConfigController.gameBirdImage.value =
-                                    '1';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '1',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "1") {
-                                generalConfigController.gameBirdImage.value =
-                                    '2';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '2',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "2") {
-                                generalConfigController.gameBirdImage.value =
-                                    '3';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '3',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "3") {
-                                generalConfigController.gameBirdImage.value =
-                                    '4';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '4',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "4") {
-                                generalConfigController.gameBirdImage.value =
-                                    '5';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '5',
-                                );
-                              } else if (generalConfigController
-                                      .gameBirdImage.value ==
-                                  "5") {
-                                generalConfigController.gameBirdImage.value =
-                                    '0';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '0',
-                                );
-                              } else {
-                                generalConfigController.gameBirdImage.value =
-                                    '0';
-                                await generalConfigController.setHiveData(
-                                  fieldName: DBFields.gameBirdImage,
-                                  data: '0',
-                                );
-                              }
-                              widget.game.bird.onLoad();
-                              widget.game.interval.reset();
-                            },
-                            child: SvgPicture.asset(
-                              Assets.next,
-                              height: 40,
-                            ),
-                          ),
-                        ),
+                        // SizedBox(
+                        //   width: 40.0.w,
+                        // ),
+                        // BouncingWidget(
+                        //   child: GestureDetector(
+                        //     onTap: () async {
+                        //       if (generalConfigController.gameBirdImage.value ==
+                        //           "0") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '1';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '1',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "1") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '2';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '2',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "2") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '3';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '3',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "3") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '4';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '4',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "4") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '5';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '5',
+                        //         );
+                        //       } else if (generalConfigController
+                        //               .gameBirdImage.value ==
+                        //           "5") {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '0';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '0',
+                        //         );
+                        //       } else {
+                        //         generalConfigController.gameBirdImage.value =
+                        //             '0';
+                        //         await generalConfigController.setHiveData(
+                        //           fieldName: DBFields.gameBirdImage,
+                        //           data: '0',
+                        //         );
+                        //       }
+                        //       widget.game.bird.onLoad();
+                        //       widget.game.interval.reset();
+                        //     },
+                        //     child: SvgPicture.asset(
+                        //       Assets.next,
+                        //       height: 40,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
